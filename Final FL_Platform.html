@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher's Cockpit: AI-Driven Facilitative Leadership | R.P. Leiby Facilitative Systems</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0d2b5e;--gold:#f0a500;--green:#27ae60;--purple:#6f42c1;--teal:#0d7a7a;--red:#e74c3c;--light:#f4f6fb;--white:#fff;--text:#222;--muted:#666;--border:#dde3ef}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:var(--text);min-height:100vh}
+/* NAV */
+#topnav{background:var(--navy);color:#fff;display:flex;align-items:center;padding:10px 16px;min-height:66px;gap:4px;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px #0004}
+#topnav .brand{font-size:1.05rem;font-weight:700;color:var(--gold);margin-right:12px;white-space:nowrap}
+.nav-btn{background:none;border:none;color:#cce;cursor:pointer;padding:6px 10px;border-radius:6px;font-size:.82rem;white-space:nowrap;transition:background .15s}
+.nav-btn:hover,.nav-btn.active{background:var(--gold);color:var(--navy);font-weight:700}
+/* MAIN */
+#main{max-width:1100px;margin:0 auto;padding:24px 16px}
+.view{display:none}.view.active{display:block}
+/* CARDS */
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px #0001;padding:20px;margin-bottom:18px}
+.card h2{color:var(--navy);font-size:1.2rem;margin-bottom:12px}
+.card h3{color:var(--teal);font-size:1rem;margin-bottom:8px}
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
+/* FORM */
+label{display:block;font-size:.85rem;color:var(--navy);font-weight:600;margin-bottom:4px}
+input[type=text],input[type=email],input[type=password],textarea,select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:7px;font-size:.92rem;font-family:inherit;background:#fff;transition:border .2s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--navy)}
+textarea{resize:vertical;min-height:90px}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:7px;border:none;cursor:pointer;font-size:.9rem;font-weight:600;transition:opacity .15s,transform .1s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-green{background:var(--green);color:#fff}
+.btn-purple{background:var(--purple);color:#fff}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-red{background:var(--red);color:#fff}
+.btn-outline{background:none;border:2px solid var(--navy);color:var(--navy)}
+.btn:hover{opacity:.88}
+.btn-sm{padding:5px 12px;font-size:.8rem}
+/* BADGES */
+.badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:.75rem;font-weight:700}
+.badge-navy{background:var(--navy);color:#fff}
+.badge-gold{background:var(--gold);color:var(--navy)}
+.badge-green{background:var(--green);color:#fff}
+.badge-purple{background:var(--purple);color:#fff}
+.badge-teal{background:var(--teal);color:#fff}
+.badge-red{background:var(--red);color:#fff}
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:.87rem}
+th{background:var(--navy);color:#fff;padding:8px 10px;text-align:left}
+td{padding:7px 10px;border-bottom:1px solid var(--border)}
+tr:hover td{background:#f0f4ff}
+/* STATUS */
+#status-bar{position:fixed;bottom:18px;right:18px;background:var(--green);color:#fff;padding:10px 20px;border-radius:8px;font-size:.9rem;font-weight:600;display:none;z-index:999;box-shadow:0 3px 12px #0003}
+/* DOK colors */
+.dok1{background:#e3f0ff;color:#1a5fa8;border-left:4px solid #1a5fa8}
+.dok2{background:#e8f8e8;color:#1a7a1a;border-left:4px solid #1a7a1a}
+.dok3{background:#fff5e0;color:#b87800;border-left:4px solid #b87800}
+.dok4{background:#f3e8ff;color:#6f42c1;border-left:4px solid #6f42c1}
+.dok-item{padding:10px 14px;border-radius:6px;margin-bottom:8px}
+/* RUBRIC TABLE */
+.rubric-table th:nth-child(1){width:22%}
+.rubric-table td:nth-child(2){background:#e8f8e8}.rubric-table td:nth-child(3){background:#fff9e0}
+.rubric-table td:nth-child(4){background:#ffe8e8}.rubric-table td:nth-child(5){background:#f0e8ff}
+/* LEDGER */
+.hash-block{background:#1a1a2e;color:#0ff;font-family:monospace;font-size:.72rem;padding:10px;border-radius:6px;word-break:break-all;margin-bottom:6px}
+/* STEP */
+.step-card{border-left:5px solid var(--teal);padding:0;margin-bottom:16px;background:#fff;border-radius:0 10px 10px 0;box-shadow:0 2px 8px #0001;overflow:hidden}
+.step-card-header{padding:12px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.step-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;color:#fff}
+.step-card-body{padding:0 16px 14px 16px}
+.step-section{margin-top:12px}
+.step-section-label{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.step-card ul{padding-left:18px;color:var(--text);font-size:.9rem;margin:0}
+.step-card ul li{margin-bottom:5px;line-height:1.45}
+.step-card.highlighted{box-shadow:0 0 0 3px var(--gold),0 4px 16px #0002}
+.role-leader-tag{display:inline-flex;align-items:center;gap:5px;border-radius:16px;padding:3px 10px;font-size:.8rem;font-weight:700;color:#fff}
+/* ROLE BADGE ROW */
+.role-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+/* ROLE CHIPS interactive */
+.role-chip{background:var(--navy);color:#fff;border-radius:20px;padding:7px 16px;font-size:.84rem;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .15s;user-select:none}
+.role-chip:hover{opacity:.85;transform:translateY(-1px);box-shadow:0 3px 10px #0003}
+.role-chip.selected{border-color:var(--gold);box-shadow:0 0 0 3px #f0a50033}
+.role-panel{display:none;border-radius:10px;padding:16px;margin-top:10px;border-left:5px solid var(--teal);background:#f4faff;animation:fadeIn .2s ease}
+.role-panel.open{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.role-assign-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.role-assign-row:last-child{border-bottom:none}
+
+/* TABS */
+.tab-row{display:flex;gap:4px;border-bottom:2px solid var(--border);margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:7px 16px;border:none;background:none;cursor:pointer;font-size:.88rem;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab.active{color:var(--navy);font-weight:700;border-bottom-color:var(--navy)}
+/* ALERT */
+.alert{padding:10px 14px;border-radius:7px;margin-bottom:12px;font-size:.88rem}
+.alert-info{background:#e3f0ff;color:#1a5fa8}
+.alert-warn{background:#fff5cc;color:#8a6200}
+.alert-success{background:#e8f8e8;color:#1a6e1a}
+/* INPUT ROW */
+.input-row{display:flex;gap:10px;align-items:flex-end;margin-bottom:12px}
+.input-row>*{flex:1}
+.input-row .btn{flex:0 0 auto;margin-bottom:0}
+/* QUOTE */
+.quote-block{border-left:4px solid var(--gold);padding:10px 16px;background:#fffbf0;color:var(--navy);font-style:italic;border-radius:0 8px 8px 0;margin:12px 0}
+/* Home cards */
+.home-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 10px #0001;cursor:pointer;border-top:4px solid var(--navy);transition:box-shadow .2s,transform .15s}
+.home-card:hover{box-shadow:0 6px 20px #0002;transform:translateY(-2px)}
+.home-card .icon{font-size:2rem;margin-bottom:8px}
+.home-card h3{color:var(--navy);font-size:1rem;margin-bottom:4px}
+.home-card p{color:var(--muted);font-size:.82rem}
+/* Print */
+@media print{#topnav,#status-bar,.no-print{display:none!important}.view{display:block!important}}
+
+/* ========== COCKPIT OVERLAY ========== */
+#cockpit-overlay{position:fixed;inset:0;background:black;z-index:9999;font-family:Arial,Helvetica,sans-serif;color:white;overflow:hidden}
+#space-window{position:absolute;inset:70px 50px 110px 50px;overflow:hidden;background:radial-gradient(circle at center,#06284a 0%,#01040a 55%,#000 100%);border:4px solid #00d9ff;border-radius:28px;box-shadow:0 0 25px #00d9ff,inset 0 0 35px rgba(0,217,255,0.6)}
+.cstar{position:absolute;inset:0;transform-origin:center center}
+.cstar1{animation:czoom 4s linear infinite;background-image:radial-gradient(white 1px,transparent 1px),radial-gradient(#00d9ff 1px,transparent 1px),radial-gradient(white 1px,transparent 1px),radial-gradient(#3aa7ff 1px,transparent 1px);background-size:120px 120px,180px 180px,90px 90px,140px 140px;background-position:10px 20px,60px 80px,40px 60px,100px 30px;opacity:.9}
+.cstar2{animation:czoom 4s linear infinite 2s;background-image:radial-gradient(white 2px,transparent 2px),radial-gradient(#3aa7ff 2px,transparent 2px),radial-gradient(white 1px,transparent 1px);background-size:200px 200px,160px 160px,110px 110px;background-position:80px 40px,30px 100px,70px 70px;opacity:.7}
+@keyframes czoom{0%{transform:scale(1);opacity:0}15%{opacity:.9}85%{opacity:.9}100%{transform:scale(3.5);opacity:0}}
+#cockpit-title{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);text-align:center;animation:ctextcycle 6s ease-in-out infinite;text-shadow:0 0 10px #00d9ff,0 0 25px #00d9ff,0 0 45px #00d9ff;z-index:10;white-space:nowrap}
+@keyframes ctextcycle{0%{opacity:0}30%{opacity:1}65%{opacity:1}100%{opacity:0}}
+#cockpit-topbar{position:absolute;top:18px;left:40px;right:40px;height:44px;border:2px solid #00d9ff;border-radius:14px;display:flex;align-items:center;padding-left:24px;color:#dffbff;font-size:15px;font-weight:bold;letter-spacing:2px;box-shadow:0 0 16px rgba(0,217,255,0.7);background:rgba(0,10,18,0.85)}
+#cockpit-navbtns{position:absolute;left:50px;right:50px;bottom:14px;height:80px;display:flex;gap:10px;align-items:center}
+.cnav{flex:1;height:64px;border:2px solid rgba(0,217,255,0.7);background:rgba(0,18,28,0.9);box-shadow:inset 0 0 14px rgba(0,217,255,0.2);border-radius:12px;color:#00eaff;font-size:11px;font-weight:bold;letter-spacing:1.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:all .2s}
+.cnav:hover{background:rgba(0,100,140,0.5);box-shadow:0 0 18px #00d9ff,inset 0 0 20px rgba(0,217,255,0.4);color:#fff;border-color:#00d9ff}
+@keyframes cblink{from{opacity:1}to{opacity:.25}}
+@keyframes cockpitFadeOut{from{opacity:1}to{opacity:0}}
+@keyframes cpanicpulse{0%,100%{box-shadow:0 0 10px rgba(245,168,0,0.6)}50%{box-shadow:0 0 22px rgba(255,200,0,1)}}
+.space-phrase{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.03);opacity:0;text-align:center;white-space:normal;max-width:700px;width:90%;color:#fff;text-shadow:0 0 12px #00d9ff,0 0 28px #00d9ff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;letter-spacing:4px;font-size:30px;line-height:1.4;pointer-events:none}
+@keyframes spaceApproach{0%{transform:translate(-50%,-50%) scale(0.03);opacity:0}3%{opacity:1}10%{transform:translate(-50%,-50%) scale(0.88);opacity:1}13%{transform:translate(-50%,-50%) scale(0.88);opacity:1}16%{transform:translate(-50%,-50%) scale(2.4);opacity:0}16.01%,100%{transform:translate(-50%,-50%) scale(0.03);opacity:0}}
+#cockpit-standing{position:absolute;bottom:96px;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap;color:#dffbff;text-shadow:0 0 10px #00d9ff,0 0 20px #00d9ff;letter-spacing:6px;font-size:13px;opacity:.7;pointer-events:none}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ COCKPIT OVERLAY ============================================================ -->
+<div id="cockpit-overlay">
+  <div id="space-window">
+    <div class="cstar cstar1"></div>
+    <div class="cstar cstar2"></div>
+    <!-- Permanent center title -->
+    <div id="cockpit-title">
+      <div style="font-size:16px;letter-spacing:8px;margin-bottom:14px;">FACILITATIVE LEADERSHIP</div>
+      <div style="font-size:13px;letter-spacing:3px;margin-bottom:18px;opacity:.85;">A New Paradigm for the Student Centered Classroom</div>
+      <h1 style="font-size:52px;line-height:.95;letter-spacing:8px;font-weight:bold;margin:0;">FACILITATORS COCKPIT</h1>
+      <div style="font-size:12px;letter-spacing:4px;margin-top:14px;opacity:.65;">R. P. LEIBY</div>
+    </div>
+
+    <!-- Zooming phrases from deep space, orbiting around the title -->
+    <div class="space-phrase" style="top:13%;left:50%;animation:spaceApproach 48s linear infinite 0s;font-size:20px;">DOK &nbsp;·&nbsp; DEPTH OF KNOWLEDGE</div>
+    <div class="space-phrase" style="top:28%;left:30%;animation:spaceApproach 48s linear infinite 6s;font-size:17px;">TEACHER AS FACILITATOR</div>
+    <div class="space-phrase" style="top:28%;left:70%;animation:spaceApproach 48s linear infinite 12s;font-size:17px;">TEACHING IS LEARNING</div>
+    <div class="space-phrase" style="top:50%;left:25%;animation:spaceApproach 48s linear infinite 18s;font-size:15px;">WHEN STUDENTS BUILD<br>THE PLAN, THEY OWN IT</div>
+    <div class="space-phrase" style="top:50%;left:75%;animation:spaceApproach 48s linear infinite 24s;font-size:15px;">LET STUDENTS BEAR<br>THE COGNITIVE LOAD</div>
+    <div class="space-phrase" style="top:74%;left:30%;animation:spaceApproach 48s linear infinite 30s;font-size:15px;">PLAY IS THE HIGHEST FORM<br>OF RESEARCH<br><span style="font-size:12px;letter-spacing:2px;opacity:.8;">— ALBERT EINSTEIN</span></div>
+    <div class="space-phrase" style="top:83%;left:50%;animation:spaceApproach 48s linear infinite 36s;font-size:17px;">WHAT YOU MEASURE IS WHAT YOU BUILD</div>
+    <div class="space-phrase" style="top:74%;left:70%;animation:spaceApproach 48s linear infinite 42s;font-size:17px;">REAL PROJECTS BUILD<br>REAL MOTIVATION</div>
+  </div>
+
+  <div id="cockpit-topbar">
+    ★ R.P.L. FACILITATIVE SYSTEMS DASHBOARD
+    <div style="position:absolute;right:46px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:10px;">
+      <button id="cockpit-music-btn" onclick="cockpitToggleMusic(this)" style="padding:6px 14px;background:rgba(0,40,60,0.9);border:2px solid #00d9ff;border-radius:8px;color:#00eaff;font-size:11px;font-weight:900;letter-spacing:2px;cursor:pointer;box-shadow:0 0 8px rgba(0,217,255,0.4);transition:all .2s;">♪ PLAY</button>
+      <button onclick="window.open('https://www.youtube.com/watch?v=sTXoW-NoW5c','_blank')" style="padding:6px 14px;background:#f5a800;border:2px solid #ffcc00;border-radius:8px;color:#1a0a00;font-size:11px;font-weight:900;letter-spacing:2px;cursor:pointer;animation:cpanicpulse 2s ease-in-out infinite;">☕ COFFEE BREAK</button>
+    </div>
+    <div style="position:absolute;right:20px;top:50%;transform:translateY(-50%);width:14px;height:14px;background:red;border-radius:50%;box-shadow:0 0 16px red;animation:cblink 1s infinite alternate;"></div>
+  </div>
+
+  <div id="cockpit-navbtns">
+    <button class="cnav" data-view="home" style="background:rgba(30,110,40,0.85);border-color:#4cdd6a;color:#caffce;box-shadow:inset 0 0 14px rgba(76,221,106,0.3),0 0 10px rgba(76,221,106,0.2);"><span style="font-size:18px;">⌂</span>HOME</button>
+    <button class="cnav" data-view="prep-guide" style="background:rgba(120,85,0,0.85);border-color:#f5a800;color:#ffe5a0;box-shadow:inset 0 0 14px rgba(245,168,0,0.3),0 0 10px rgba(245,168,0,0.2);"><span style="font-size:18px;">✦</span>TEACHER PREP</button>
+    <button class="cnav" data-view="roster" style="background:rgba(20,60,130,0.85);border-color:#5b9fff;color:#b8d4ff;box-shadow:inset 0 0 14px rgba(91,159,255,0.3),0 0 10px rgba(91,159,255,0.2);"><span style="font-size:18px;">≡</span>ROSTER</button>
+    <button class="cnav" data-view="transformed" style="background:rgba(0,90,90,0.85);border-color:#00d9cc;color:#a0f5f0;box-shadow:inset 0 0 14px rgba(0,217,204,0.3),0 0 10px rgba(0,217,204,0.2);"><span style="font-size:18px;">◉</span>LESSON STATUS</button>
+    <button class="cnav" data-view="dashboard" style="background:rgba(75,20,120,0.85);border-color:#b06eff;color:#e0c4ff;box-shadow:inset 0 0 14px rgba(176,110,255,0.3),0 0 10px rgba(176,110,255,0.2);"><span style="font-size:18px;">▦</span>ASSESSMENT DASHBOARD</button>
+    <button class="cnav" data-view="ledger" style="background:rgba(120,20,20,0.85);border-color:#ff6b6b;color:#ffc4c4;box-shadow:inset 0 0 14px rgba(255,107,107,0.3),0 0 10px rgba(255,107,107,0.2);"><span style="font-size:18px;">⊞</span>ASSESSMENT LEDGER</button>
+    <button class="cnav" data-view="archives" style="background:rgba(55,60,70,0.85);border-color:#9aaabb;color:#d0dae6;box-shadow:inset 0 0 14px rgba(154,170,187,0.3),0 0 10px rgba(154,170,187,0.2);"><span style="font-size:18px;">⏃</span>LESSON ARCHIVE</button>
+  </div>
+</div>
+
+<script>
+// ===== COCKPIT MUSIC =====
+var _cactx=null,_cplaying=false,_ctimers=[],_cnodes=[];
+function _cReverb(ctx,dur,dec){var len=ctx.sampleRate*dur,buf=ctx.createBuffer(2,len,ctx.sampleRate);for(var c=0;c<2;c++){var d=buf.getChannelData(c);for(var i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,dec);}var conv=ctx.createConvolver();conv.buffer=buf;return conv;}
+function _cNote(ctx,dest,freq,start,dur,vol){var o=ctx.createOscillator(),g=ctx.createGain();o.type='triangle';o.frequency.value=freq;g.gain.setValueAtTime(0,ctx.currentTime+start);g.gain.linearRampToValueAtTime(vol,ctx.currentTime+start+0.05);g.gain.setValueAtTime(vol,ctx.currentTime+start+dur-0.08);g.gain.linearRampToValueAtTime(0,ctx.currentTime+start+dur);o.connect(g);g.connect(dest);o.start(ctx.currentTime+start);o.stop(ctx.currentTime+start+dur+0.1);_cnodes.push(o,g);}
+function cockpitStartMusic(){_cactx=new(window.AudioContext||window.webkitAudioContext)();_cactx.resume();var rev=_cReverb(_cactx,4,2.5),mg=_cactx.createGain();mg.gain.value=0.22;rev.connect(mg);mg.connect(_cactx.destination);_cnodes.push(rev,mg);[[130.8,.10],[164.8,.07],[196,.05]].forEach(function(fv){var o=_cactx.createOscillator(),g=_cactx.createGain();o.type='sine';o.frequency.value=fv[0];g.gain.value=fv[1];o.connect(g);g.connect(rev);o.start();_cnodes.push(o,g);});var ce=[293.7,329.6,261.6,130.8,196],cd=[.38,.38,.38,.65,1.0];function motif(){if(!_cplaying)return;var t=0.1;ce.forEach(function(f,i){_cNote(_cactx,rev,f,t,cd[i],.20);_cNote(_cactx,rev,f*2,t,cd[i],.07);t+=cd[i]+.09;});_ctimers.push(setTimeout(motif,(t+2.2)*1000));}motif();function tw(){if(!_cplaying)return;var sc=[523.3,659.3,783.9,1046.5],o=_cactx.createOscillator(),g=_cactx.createGain();o.type='triangle';o.frequency.value=sc[Math.floor(Math.random()*sc.length)];g.gain.setValueAtTime(.07,_cactx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,_cactx.currentTime+2.5);o.connect(g);g.connect(rev);o.start();o.stop(_cactx.currentTime+2.6);_ctimers.push(setTimeout(tw,900+Math.random()*2200));}tw();}
+function cockpitStopMusic(){_cplaying=false;_ctimers.forEach(clearTimeout);_ctimers=[];_cnodes.forEach(function(n){try{n.stop?n.stop():n.disconnect();}catch(e){}});_cnodes=[];if(_cactx){try{_cactx.close();}catch(e){}_cactx=null;}}
+function cockpitToggleMusic(btn){if(!_cplaying){_cplaying=true;cockpitStartMusic();btn.textContent='■ STOP';btn.style.background='rgba(0,180,255,0.2)';btn.style.boxShadow='0 0 14px rgba(0,217,255,0.8)';}else{cockpitStopMusic();btn.textContent='♪ PLAY';btn.style.background='rgba(0,40,60,0.9)';btn.style.boxShadow='0 0 8px rgba(0,217,255,0.4)';}}
+
+// ===== COCKPIT NAVIGATION =====
+function cockpitGo(view){
+  var overlay=document.getElementById('cockpit-overlay');
+  overlay.style.animation='cockpitFadeOut 0.4s ease forwards';
+  setTimeout(function(){
+    cockpitStopMusic();
+    overlay.style.display='none';
+    overlay.style.animation='';
+    document.getElementById('topnav').style.display='flex';
+    show(view);
+  },380);
+}
+function openCockpit(){
+  cockpitStopMusic();
+  var btn=document.getElementById('cockpit-music-btn');
+  if(btn){btn.textContent='♪ PLAY';btn.style.background='rgba(0,40,60,0.9)';btn.style.boxShadow='0 0 8px rgba(0,217,255,0.4)';}
+  var overlay=document.getElementById('cockpit-overlay');
+  overlay.style.opacity='1';
+  overlay.style.display='block';
+}
+
+// ===== AUTO-START MUSIC ON FIRST INTERACTION =====
+var _cmusicStarted=false;
+function _cTryAutoMusic(){
+  if(_cmusicStarted)return;
+  _cmusicStarted=true;
+  _cplaying=true;
+  cockpitStartMusic();
+  var btn=document.getElementById('cockpit-music-btn');
+  if(btn){btn.textContent='■ STOP';btn.style.background='rgba(0,180,255,0.2)';btn.style.boxShadow='0 0 14px rgba(0,217,255,0.8)';}
+}
+document.getElementById('cockpit-overlay').addEventListener('click',_cTryAutoMusic,{once:true});
+document.getElementById('cockpit-overlay').addEventListener('mousemove',_cTryAutoMusic,{once:true});
+document.getElementById('cockpit-overlay').addEventListener('touchstart',_cTryAutoMusic,{once:true});
+document.getElementById('cockpit-overlay').addEventListener('touchend',_cTryAutoMusic,{once:true});
+
+// iOS button fix — touchend on each nav button
+document.querySelectorAll('.cnav').forEach(function(btn){
+  btn.addEventListener('click', function(){ cockpitGo(btn.getAttribute('data-view')); });
+  btn.addEventListener('touchend', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    _cTryAutoMusic();
+    cockpitGo(btn.getAttribute('data-view'));
+  });
+});
+</script>
+
+<nav id="topnav" style="display:none">
+  <div style="display:flex;flex-direction:column;margin-right:14px;line-height:1.2;cursor:pointer" onclick="openCockpit()" title="Return to Cockpit"><span style="font-size:.72rem;color:#aac;letter-spacing:.04em;font-weight:500">R.P. LEIBY FACILITATIVE SYSTEMS</span><span class="brand" style="margin-right:0;color:#e74c3c;">&#9992;&#65039; Teacher's Cockpit</span></div>
+  <button class="nav-btn active" onclick="show('home')">Home</button>
+  <button class="nav-btn" onclick="show('lesson-input')">Lesson Input</button>
+  <button class="nav-btn" onclick="show('transformed')">Transformed</button>
+  <button class="nav-btn" onclick="show('prep-guide')">Prep Guide</button>
+  <button class="nav-btn" onclick="show('narrative')">Lesson Plan Narrative</button>
+  <button class="nav-btn" onclick="show('dok-ticket')">DOK Ticket</button>
+  <button class="nav-btn" onclick="show('student-portal')">Student Portal</button>
+  <button class="nav-btn" onclick="show('my-feedback')">My Feedback</button>
+  <button class="nav-btn" onclick="show('dashboard')">Grading Dashboard</button>
+  <button class="nav-btn" onclick="show('roster')">Roster</button>
+  <button class="nav-btn" onclick="show('ledger')">Ledger</button>
+  <button class="nav-btn" onclick="show('settings')">Settings</button>
+  <button class="nav-btn" onclick="show('archives')">📁 Archives</button>
+</nav>
+
+<div id="main">
+
+<!-- ============================================================ HOME ============================================================ -->
+<div id="view-home" class="view active">
+  <div style="text-align:center;padding:24px 0 16px">
+    <div style="font-size:.8rem;font-weight:700;letter-spacing:.1em;color:var(--teal);text-transform:uppercase;margin-bottom:4px">R.P. Leiby Facilitative Systems</div>
+    <h1 style="color:var(--navy);font-size:2rem;font-weight:800">Teacher's Cockpit: AI-Driven Facilitative Leadership</h1>
+    <h2 style="color:var(--teal);font-size:1.1rem;font-weight:600;margin-top:6px">Standards &amp; Depth of Knowledge (DOK) Platform</h2>
+    <p style="color:var(--muted);margin-top:8px;font-size:.93rem;max-width:680px;margin-left:auto;margin-right:auto">From lesson transformation to formative assessment to summative grading, with AI support for grading system export.</p>
+    <div class="quote-block" style="max-width:620px;margin:16px auto">
+      "The facilitator's job is not to hold the knowledge — it is to hold the space where knowledge emerges." — R. P. Leiby, Book 6
+    </div>
+  </div>
+  <div class="grid3">
+    <div class="home-card" onclick="show('lesson-input')"><div class="icon">📄</div><h3>Lesson Input</h3><p>Paste or upload a traditional lesson plan and transform it into Facilitative Leadership format</p></div>
+    <div class="home-card" onclick="show('transformed')"><div class="icon">✨</div><h3>Transformed Lesson</h3><p>View the full FL-formatted output with roles, steps, checkpoints, and rubrics</p></div>
+    <div class="home-card" onclick="show('prep-guide')"><div class="icon">📋</div><h3>Teacher Prep Guide</h3><p>Private checklist: room setup, manager briefings, watch-for moments</p></div>
+    <div class="home-card" onclick="show('narrative')"><div class="icon">📊</div><h3>Narrative Summary</h3><p>At-a-glance Who/What/When/Why table for every role and phase</p></div>
+    <div class="home-card" onclick="show('dok-ticket')"><div class="icon">🎟️</div><h3>DOK Ticket</h3><p>Fillable, saveable, reusable formative assessment ticket tied to this lesson</p></div>
+    <div class="home-card" onclick="show('student-portal')"><div class="icon">🎓</div><h3>Student Portal</h3><p>Students select a standard, read the prompt, and submit evidence</p></div>
+    <div class="home-card" onclick="show('my-feedback')"><div class="icon">💬</div><h3>My Feedback</h3><p>Students view grades, teacher comments, and write reflections</p></div>
+    <div class="home-card" onclick="show('dashboard')"><div class="icon">🏫</div><h3>Teacher Dashboard</h3><p>Evaluate submissions, build rubrics, assign grades, commit to ledger</p></div>
+    <div class="home-card" onclick="show('roster')"><div class="icon">👥</div><h3>Student Roster</h3><p>Register and manage students once — used everywhere on the platform</p></div>
+    <div class="home-card" onclick="show('ledger')"><div class="icon">🔗</div><h3>Ledger</h3><p>Immutable SHA-256 hash-chain grading records with Canvas CSV export</p></div>
+    <div class="home-card" onclick="show('settings')"><div class="icon">⚙️</div><h3>Settings</h3><p>API key, model selection, subject library, platform preferences</p></div>
+    <div class="home-card" onclick="show('archives')" style="border-top-color:var(--purple)"><div class="icon">📁</div><h3>Lesson &amp; Assessment Archives</h3><p>A running history of every lesson you've transformed and every assessment you've administered — organized by date and standard</p></div>
+  </div>
+</div>
+
+<!-- ============================================================ LESSON INPUT ============================================================ -->
+<div id="view-lesson-input" class="view">
+  <div class="card">
+    <h2>📄 Lesson Input</h2>
+    <div class="grid2">
+      <div>
+        <label>Subject Area</label>
+        <select id="li-subject" onchange="loadSubjectStandards()">
+          <option value="">-- Select Subject --</option>
+          <option value="hvac">Maryland CTE HVAC (NCCER Level 1)</option>
+          <option value="english">High School English (Common Core)</option>
+          <option value="construction">CTE Construction</option>
+          <option value="auto">Auto Mechanics (ASE-aligned) — Placeholder</option>
+          <option value="electric">Residential Electricity (NEC-aligned) — Placeholder</option>
+          <option value="custom">Custom Upload</option>
+        </select>
+      </div>
+      <div>
+        <label>Grade Level</label>
+        <select id="li-grade">
+          <option>9th Grade</option><option>10th Grade</option><option>11th Grade</option><option>12th Grade</option><option>Mixed/CTE</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <label>Standards Library (optional — paste CSV or upload)</label>
+      <textarea id="li-standards" rows="3" placeholder="Paste standards here, one per line, or upload below..."></textarea>
+    </div>
+    <div style="margin-top:10px">
+      <label>Upload Standards File (.csv, .txt)</label>
+      <input type="file" id="li-standards-file" accept=".csv,.txt" onchange="readStandardsFile(this)">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Paste or Upload Existing Lesson Plan</h2>
+    <div style="margin-bottom:10px">
+      <label>Paste Lesson Plan Text</label>
+      <textarea id="li-lesson" rows="12" placeholder="Paste any lesson plan format here — objectives, activities, assessment, materials..."></textarea>
+    </div>
+    <div style="margin-bottom:14px">
+      <label>Or Upload Lesson File (.txt, .docx, .pdf note: text extracted from .txt)</label>
+      <input type="file" id="li-lesson-file" accept=".txt,.docx,.pdf" onchange="readLessonFile(this)">
+    </div>
+    <div class="alert alert-info">AI will transform this lesson into Facilitative Leadership format with roles, facilitative steps, formative checkpoints, and two rubrics. Your standards, learning goals, and objectives will be preserved exactly.</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-gold" onclick="transformLesson()">✨ Transform with AI</button>
+      <button class="btn btn-outline btn-sm" onclick="loadDemoLesson()">Load Demo Lesson</button>
+      <button class="btn btn-outline btn-sm" onclick="clearLessonInput()">Clear</button>
+    </div>
+    <div id="li-progress" style="display:none;margin-top:12px">
+      <div class="alert alert-info">⏳ AI is transforming your lesson… this may take 20–40 seconds.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ TRANSFORMED LESSON ============================================================ -->
+<div id="view-transformed" class="view">
+  <div class="card" style="border-top:4px solid var(--gold)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
+      <div><h2>✨ Transformed Lesson</h2><div id="tl-meta" style="color:var(--muted);font-size:.85rem"></div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" class="no-print">
+        <button class="btn btn-gold btn-sm" onclick="window.print()">🖨️ Print</button>
+        <button class="btn btn-teal btn-sm" onclick="show('prep-guide')">Prep Guide →</button>
+        <button class="btn btn-purple btn-sm" onclick="show('dok-ticket')">DOK Ticket →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Learning Goals &amp; Standards</h2>
+    <div id="tl-goals"></div>
+  </div>
+
+  <div class="card">
+    <h2>Student Leadership Roles</h2>
+    <div id="tl-roles" class="role-row"></div>
+    <div id="tl-roles-detail"></div>
+  </div>
+
+  <div class="card">
+    <h2>Facilitative Steps</h2>
+    <div id="tl-steps"></div>
+  </div>
+
+  <div class="card">
+    <h2>Rubrics</h2>
+    <div class="tab-row">
+      <button class="tab active" onclick="switchRubricTab('process',this)">Facilitative Process Rubric</button>
+      <button class="tab" onclick="switchRubricTab('content',this)">Content Mastery Rubric</button>
+    </div>
+    <div id="rubric-process"></div>
+    <div id="rubric-content" style="display:none"></div>
+  </div>
+
+  <div class="card">
+    <div class="quote-block" id="tl-quote">"The facilitator's job is not to hold the knowledge — it is to hold the space where knowledge emerges." — R. P. Leiby, Book 6</div>
+  </div>
+</div>
+
+<!-- ============================================================ PREP GUIDE ============================================================ -->
+<div id="view-prep-guide" class="view">
+  <div class="card" style="border-top:4px solid var(--teal)">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2>📋 Teacher Prep Guide <span class="badge badge-teal" style="font-size:.7rem;vertical-align:middle">PRIVATE</span></h2>
+      <button class="btn btn-outline btn-sm no-print" onclick="window.print()">🖨️ Print</button>
+    </div>
+  </div>
+  <div class="card"><h3>☑️ Before-Day To-Do List</h3><div id="pg-todo"></div></div>
+  <div class="card"><h3>🪑 Room Setup</h3><div id="pg-room"></div></div>
+  <div class="card"><h3>🗣️ Student Manager Briefings</h3><div id="pg-briefings"></div></div>
+  <div class="card"><h3>👁️ Watch-For Moments</h3><div id="pg-watchfor"></div></div>
+  <div class="card"><h3>🧠 Mindset Reminders</h3><div id="pg-mindset"></div></div>
+</div>
+
+<!-- ============================================================ NARRATIVE SUMMARY ============================================================ -->
+<div id="view-narrative" class="view">
+  <div class="card" style="border-top:4px solid var(--purple)">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2>📊 Narrative Summary</h2>
+      <button class="btn btn-outline btn-sm no-print" onclick="window.print()">🖨️ Print</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3>At-a-Glance: Who / What / When / Why</h3>
+    <div style="overflow-x:auto"><table id="narrative-table">
+      <thead><tr><th>Role</th><th>What They Do</th><th>When (Phase)</th><th>Why It Matters</th></tr></thead>
+      <tbody id="narrative-body"></tbody>
+    </table></div>
+  </div>
+  <div class="card">
+    <h3>Phase Timeline</h3>
+    <div id="narrative-timeline"></div>
+  </div>
+</div>
+
+<!-- ============================================================ DOK TICKET ============================================================ -->
+<div id="view-dok-ticket" class="view">
+  <div class="card" style="border-top:4px solid var(--purple)">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <h2>🎟️ DOK Assessment Ticket</h2>
+      <div style="display:flex;gap:8px" class="no-print">
+        <button class="btn btn-gold btn-sm" onclick="saveDOK()">💾 Save</button>
+        <button class="btn btn-teal btn-sm" onclick="window.print()">🖨️ Print</button>
+        <button class="btn btn-purple btn-sm" onclick="downloadDOK()">⬇️ Download HTML</button>
+        <button class="btn btn-outline btn-sm" onclick="clearDOK()">Clear</button>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:.83rem;margin-top:6px">Reusable across all students. Fill out during or after instruction, then commit to ledger.</p>
+  </div>
+
+  <div class="card">
+    <div class="grid2">
+      <div><label>Student Name</label><input type="text" id="dok-student" placeholder="Select or type student name"></div>
+      <div><label>Date</label><input type="text" id="dok-date" value=""></div>
+    </div>
+    <div style="margin-top:10px"><label>Lesson / Standard Assessed</label><input type="text" id="dok-lesson" placeholder="e.g. HVAC-01: Basic Safety"></div>
+  </div>
+
+  <div class="card">
+    <h3>DOK Level Prompts</h3>
+    <div id="dok-prompts"></div>
+  </div>
+
+  <div class="card">
+    <h3>Teacher Observations</h3>
+    <div class="grid2">
+      <div><label>Evidence of Understanding</label><textarea id="dok-evidence" rows="3" placeholder="What did the student demonstrate?"></textarea></div>
+      <div><label>Next Steps / Intervention</label><textarea id="dok-nextsteps" rows="3" placeholder="What does this student need next?"></textarea></div>
+    </div>
+    <div style="margin-top:10px">
+      <label>Overall DOK Level Demonstrated</label>
+      <select id="dok-overall">
+        <option value="">-- Select --</option>
+        <option value="1">DOK 1 — Recall &amp; Reproduction</option>
+        <option value="2">DOK 2 — Skill / Concept</option>
+        <option value="3">DOK 3 — Strategic Thinking</option>
+        <option value="4">DOK 4 — Extended Thinking</option>
+      </select>
+    </div>
+    <button class="btn btn-green" style="margin-top:12px" onclick="commitDOKToLedger()">🔗 Commit to Ledger</button>
+  </div>
+</div>
+
+<!-- ============================================================ STUDENT PORTAL ============================================================ -->
+<div id="view-student-portal" class="view">
+  <div class="card" style="border-top:4px solid var(--green)">
+    <h2>🎓 Student Portal</h2>
+    <p style="color:var(--muted);font-size:.85rem">Select your name, choose a standard, read the prompt, and submit your evidence.</p>
+  </div>
+  <div class="card">
+    <div class="grid2">
+      <div><label>Your Name</label><select id="sp-student"><option value="">-- Select Your Name --</option></select></div>
+      <div><label>Standard / Assignment</label><select id="sp-standard" onchange="loadSubmissionPrompt()"><option value="">-- Select Standard --</option></select></div>
+    </div>
+  </div>
+  <div id="sp-prompt-card" class="card" style="display:none">
+    <h3 id="sp-prompt-title"></h3>
+    <div id="sp-prompt-text" style="margin-bottom:14px;color:var(--text)"></div>
+    <label>Your Evidence / Response</label>
+    <textarea id="sp-evidence" rows="6" placeholder="Write your response here. Be specific and use examples from your work."></textarea>
+    <div style="margin-top:10px">
+      <label>Attach File (optional)</label>
+      <input type="file" id="sp-file">
+    </div>
+    <button class="btn btn-green" style="margin-top:14px" onclick="submitEvidence()">📤 Submit Evidence</button>
+  </div>
+</div>
+
+<!-- ============================================================ MY FEEDBACK ============================================================ -->
+<div id="view-my-feedback" class="view">
+  <div class="card" style="border-top:4px solid var(--green)">
+    <h2>💬 My Feedback</h2>
+    <div class="input-row">
+      <div><label>Your Name</label><select id="mf-student" onchange="loadMyFeedback()"><option value="">-- Select Your Name --</option></select></div>
+    </div>
+  </div>
+  <div id="mf-records"></div>
+</div>
+
+<!-- ============================================================ TEACHER DASHBOARD ============================================================ -->
+<div id="view-dashboard" class="view">
+  <div class="card" style="border-top:4px solid var(--navy)">
+    <h2>🏫 Teacher Dashboard</h2>
+  </div>
+  <div class="tab-row">
+    <button class="tab active" onclick="switchDashTab('submissions',this)">Submissions</button>
+    <button class="tab" onclick="switchDashTab('rubric-builder',this)">Rubric Builder</button>
+    <button class="tab" onclick="switchDashTab('standards-mgr',this)">Standards</button>
+  </div>
+
+  <!-- SUBMISSIONS TAB -->
+  <div id="dash-tab-submissions">
+    <div class="card">
+      <h3>Pending Submissions</h3>
+      <div id="dash-submissions-list"></div>
+    </div>
+    <div id="dash-eval-panel" class="card" style="display:none">
+      <h3>Evaluate Submission</h3>
+      <div id="dash-eval-content"></div>
+      <div style="margin-top:12px">
+        <label>Rubric</label>
+        <div id="dash-rubric-select" style="margin-bottom:10px"></div>
+        <label>Teacher Comment</label>
+        <textarea id="dash-comment" rows="3" placeholder="Feedback visible to student..."></textarea>
+        <div class="grid2" style="margin-top:10px">
+          <div><label>Score (0–100)</label><input type="text" id="dash-score" placeholder="e.g. 87"></div>
+          <div><label>Letter Grade</label><input type="text" id="dash-letter" placeholder="Auto-calculated" readonly></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+          <button class="btn btn-gold" onclick="aiGradeSubmission()">🤖 AI Grade</button>
+          <button class="btn btn-green" onclick="commitGrade()">🔗 Commit Grade to Ledger</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUBRIC BUILDER TAB -->
+  <div id="dash-tab-rubric-builder" style="display:none">
+    <div class="card">
+      <h3>Rubric Builder</h3>
+      <div style="margin-bottom:12px">
+        <label>Rubric Name</label>
+        <input type="text" id="rb-name" placeholder="e.g. HVAC Safety Rubric">
+      </div>
+      <div style="margin-bottom:12px">
+        <label>Paste Rubric Text (AI will extract criteria)</label>
+        <textarea id="rb-paste" rows="5" placeholder="Paste any rubric text and click Extract..."></textarea>
+        <button class="btn btn-teal btn-sm" style="margin-top:6px" onclick="extractRubricFromText()">🤖 Extract Criteria</button>
+      </div>
+      <div id="rb-criteria-area"></div>
+      <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="addRubricCriterion()">+ Add Criterion</button>
+        <button class="btn btn-green" onclick="saveRubric()">💾 Save Rubric</button>
+        <button class="btn btn-outline btn-sm" onclick="loadSavedRubrics()">📂 Load Saved</button>
+      </div>
+      <div id="rb-saved-list" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <!-- STANDARDS TAB -->
+  <div id="dash-tab-standards-mgr" style="display:none">
+    <div class="card">
+      <h3>Standards Manager</h3>
+      <div style="margin-bottom:10px">
+        <label>Load Subject Library</label>
+        <select id="sm-subject" onchange="loadStdLibrary()">
+          <option value="">-- Select --</option>
+          <option value="hvac">Maryland CTE HVAC</option>
+          <option value="english">High School English</option>
+          <option value="construction">CTE Construction</option>
+        </select>
+      </div>
+      <div style="margin-bottom:10px">
+        <label>Or Paste Custom Standards (one per line)</label>
+        <textarea id="sm-custom" rows="5"></textarea>
+        <button class="btn btn-teal btn-sm" style="margin-top:6px" onclick="saveCustomStandards()">Save Custom Standards</button>
+      </div>
+      <h3 style="margin-top:14px">Active Standards</h3>
+      <div id="sm-active-standards"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ ROSTER ============================================================ -->
+<div id="view-roster" class="view">
+  <div class="card" style="border-top:4px solid var(--navy)">
+    <h2>👥 Student Roster</h2>
+  </div>
+  <div class="card">
+    <h3>Add Student</h3>
+    <div class="grid3">
+      <div><label>First Name</label><input type="text" id="ros-first" placeholder="First"></div>
+      <div><label>Last Name</label><input type="text" id="ros-last" placeholder="Last"></div>
+      <div><label>Student ID</label><input type="text" id="ros-id" placeholder="e.g. 12345"></div>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div><label>Email (optional)</label><input type="text" id="ros-email" placeholder="student@school.edu"></div>
+      <div><label>Section / Period</label><input type="text" id="ros-section" placeholder="e.g. Period 3"></div>
+    </div>
+    <button class="btn btn-primary" style="margin-top:12px" onclick="addStudent()">+ Add Student</button>
+    <button class="btn btn-outline btn-sm" style="margin-top:12px;margin-left:8px" onclick="importRosterCSV()">📂 Import CSV</button>
+  </div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <h3>Enrolled Students (<span id="roster-count">0</span>)</h3>
+      <button class="btn btn-outline btn-sm" onclick="exportRosterCSV()">⬇️ Export CSV</button>
+    </div>
+    <div style="overflow-x:auto"><table>
+      <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Section</th><th>Actions</th></tr></thead>
+      <tbody id="roster-tbody"></tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ============================================================ LEDGER ============================================================ -->
+<div id="view-ledger" class="view">
+  <div class="card" style="border-top:4px solid var(--navy)">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <h2>🔗 Immutable Grading Ledger</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" class="no-print">
+        <button class="btn btn-green btn-sm" onclick="verifyLedger()">✅ Verify Integrity</button>
+        <button class="btn btn-gold btn-sm" onclick="exportCanvasCSV()">⬇️ Export to Canvas CSV</button>
+        <button class="btn btn-outline btn-sm" onclick="clearLedger()">🗑️ Clear Ledger</button>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:10px">Each grade entry is sealed in a SHA-256 hash chain. Tamper-evident — any modification breaks the chain.</div>
+  </div>
+  <div id="ledger-verify-result"></div>
+  <div class="card">
+    <div style="overflow-x:auto"><table>
+      <thead><tr><th>#</th><th>Timestamp</th><th>Student</th><th>Standard / Rubric</th><th>Score</th><th>Grade</th><th>Hash</th></tr></thead>
+      <tbody id="ledger-tbody"></tbody>
+    </table></div>
+    <div id="ledger-empty" class="alert alert-warn" style="margin-top:10px">No grades committed to the ledger yet. Evaluate submissions in the Teacher Dashboard and commit grades.</div>
+  </div>
+  <div class="card">
+    <h3>Canvas Import Instructions</h3>
+    <ul style="padding-left:18px;font-size:.88rem;color:var(--text)">
+      <li>Click <strong>Export to Canvas CSV</strong> above.</li>
+      <li>In Canvas: Gradebook → Import → Upload the CSV file.</li>
+      <li>Each standard/rubric appears as a separate column. Points possible: 100.</li>
+      <li>Letter grades follow Howard County MD scale: A 90–100, B 80–89, C 70–79, D 60–69, F &lt;60.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ ARCHIVES ============================================================ -->
+<div id="view-archives" class="view">
+  <div class="card" style="border-top:4px solid var(--purple)">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div>
+        <h2>📁 Lesson &amp; Assessment Archives</h2>
+        <p style="color:var(--muted);font-size:.85rem;margin-top:4px">A complete teaching history — every lesson transformed and every assessment administered, auto-recorded by the platform.</p>
+      </div>
+      <div style="display:flex;gap:8px" class="no-print">
+        <button class="btn btn-outline btn-sm" onclick="window.print()">🖨️ Print</button>
+        <button class="btn btn-outline btn-sm" onclick="exportArchivesCSV()">⬇️ Export CSV</button>
+        <button class="btn btn-red btn-sm" onclick="clearArchives()">🗑️ Clear Archives</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-row">
+    <button class="tab active" onclick="switchArchiveTab('lessons',this)">📄 Lesson History</button>
+    <button class="tab" onclick="switchArchiveTab('assessments',this)">🎟️ Assessment History</button>
+    <button class="tab" onclick="switchArchiveTab('combined',this)">📊 Combined View</button>
+  </div>
+
+  <!-- LESSON HISTORY -->
+  <div id="arch-tab-lessons">
+    <div class="card">
+      <h3>Lessons Transformed</h3>
+      <div class="alert alert-info" style="margin-bottom:12px">Every time you transform a lesson in Lesson Input, it is automatically logged here.</div>
+      <div id="arch-lessons-list"></div>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT HISTORY -->
+  <div id="arch-tab-assessments" style="display:none">
+    <div class="card">
+      <h3>Assessments Administered</h3>
+      <div class="alert alert-info" style="margin-bottom:12px">Includes DOK tickets committed to the ledger and all graded student submissions.</div>
+      <div id="arch-assessments-list"></div>
+    </div>
+  </div>
+
+  <!-- COMBINED VIEW -->
+  <div id="arch-tab-combined" style="display:none">
+    <div class="card">
+      <h3>Teaching Timeline — Lessons &amp; Assessments by Date</h3>
+      <div id="arch-combined-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SETTINGS ============================================================ -->
+<div id="view-settings" class="view">
+  <div class="card" style="border-top:4px solid var(--muted)">
+    <h2>⚙️ Settings</h2>
+  </div>
+  <div class="card">
+    <h3>Anthropic API</h3>
+    <div class="alert alert-info" style="margin-bottom:10px">Your API key is stored only in this browser (localStorage). It is sent directly to Anthropic — never to any third party.</div>
+    <label>API Key</label>
+    <input type="password" id="settings-apikey" placeholder="sk-ant-...">
+    <div style="margin-top:10px">
+      <label>Model</label>
+      <select id="settings-model">
+        <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (Recommended)</option>
+        <option value="claude-opus-4-8">Claude Opus 4.8 (Most Capable)</option>
+        <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (Fastest)</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" style="margin-top:12px" onclick="saveSettings()">💾 Save Settings</button>
+    <button class="btn btn-outline btn-sm" style="margin-top:12px;margin-left:8px" onclick="testApiKey()">🧪 Test Connection</button>
+  </div>
+  <div class="card">
+    <h3>Platform Info</h3>
+    <p style="font-size:.88rem;color:var(--muted)">Facilitative Leadership Standards &amp; Competency Platform v1.0<br>Based on R. P. Leiby, Book 6: Facilitative Leadership<br>Built for Maryland CTE classrooms. All data stored locally in your browser.</p>
+  </div>
+  <div class="card">
+    <h3>Data Management</h3>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-outline btn-sm" onclick="exportAllData()">⬇️ Export All Data (JSON)</button>
+      <button class="btn btn-outline btn-sm" onclick="importAllData()">📂 Import Data (JSON)</button>
+      <button class="btn btn-red btn-sm" onclick="resetPlatform()">⚠️ Reset Platform</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<div id="status-bar"></div>
+
+<script>
+// ================================================================
+// UTILITY
+// ================================================================
+function $(id){return document.getElementById(id)}
+function show(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  $('view-'+view).classList.add('active');
+  const btns=document.querySelectorAll('.nav-btn');
+  btns.forEach(b=>{if(b.textContent.toLowerCase().includes(view.replace('-',' ').replace('student-portal','student portal').replace('my-feedback','my feedback').replace('prep-guide','prep').replace('dok-ticket','dok').replace('lesson-input','lesson').replace('transformed','transformed'))){b.classList.add('active')}});
+  onViewLoad(view);
+}
+function status(msg,color='var(--green)'){
+  const isError=color==='var(--red)';
+  if(isError){
+    // Errors go into a persistent, dismissable panel — not the fleeting status bar
+    let panel=$('error-panel');
+    if(!panel){
+      panel=document.createElement('div');
+      panel.id='error-panel';
+      panel.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#c0392b;color:#fff;padding:16px 60px 16px 20px;font-size:.9rem;line-height:1.5;z-index:9999;box-shadow:0 -3px 12px #0005;white-space:pre-wrap;word-break:break-word;max-height:40vh;overflow-y:auto';
+      document.body.appendChild(panel);
+    }
+    panel.innerHTML=`<strong>⚠️ Error:</strong> ${msg}<button onclick="this.parentElement.style.display=\'none\'" style="position:absolute;top:10px;right:14px;background:none;border:2px solid #fff;color:#fff;border-radius:6px;padding:3px 10px;cursor:pointer;font-size:.85rem">✕ Dismiss</button>`;
+    panel.style.display='block';
+    return;
+  }
+  const b=$('status-bar');b.textContent=msg;b.style.background=color;b.style.display='block';
+  setTimeout(()=>b.style.display='none',3500);
+}
+function confirm2(msg){return confirm(msg)}
+function ls(key,def=null){try{const v=localStorage.getItem(key);return v?JSON.parse(v):def}catch{return def}}
+function lss(key,val){localStorage.setItem(key,JSON.stringify(val))}
+function letterGrade(score){
+  const n=parseFloat(score);
+  if(isNaN(n))return'';
+  if(n>=90)return'A';if(n>=80)return'B';if(n>=70)return'C';if(n>=60)return'D';return'F';
+}
+function onViewLoad(view){
+  if(view==='roster')renderRoster();
+  if(view==='ledger')renderLedger();
+  if(view==='dashboard')renderDashboard();
+  if(view==='student-portal')populateStudentDropdowns();
+  if(view==='my-feedback')populateMFDropdown();
+  if(view==='dok-ticket'){loadDOK();populateDOKPrompts();}
+  if(view==='settings')loadSettings();
+  if(view==='archives'){renderArchiveLessons();}
+  if(view==='transformed')renderTransformed();
+  if(view==='prep-guide')renderPrepGuide();
+  if(view==='narrative')renderNarrative();
+}
+
+// ================================================================
+// SHA-256
+// ================================================================
+async function sha256(msg){
+  const msgBuffer=new TextEncoder().encode(msg);
+  const hashBuffer=await crypto.subtle.digest('SHA-256',msgBuffer);
+  const hashArray=Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// ================================================================
+// SETTINGS
+// ================================================================
+function loadSettings(){
+  $('settings-apikey').value=localStorage.getItem('fl_apikey')||'';
+  $('settings-model').value=localStorage.getItem('fl_model')||'claude-sonnet-4-6';
+}
+function saveSettings(){
+  localStorage.setItem('fl_apikey',$('settings-apikey').value.trim());
+  localStorage.setItem('fl_model',$('settings-model').value);
+  status('Settings saved!');
+}
+async function testApiKey(){
+  const key=localStorage.getItem('fl_apikey');
+  if(!key){status('No API key saved.','var(--red)');return;}
+  status('Testing connection…','var(--teal)');
+  try{
+    const r=await callClaude([{role:'user',content:'Reply with just: OK'}],100);
+    if(r)status('✅ Connection successful!');
+    else status('❌ Connection failed','var(--red)');
+  }catch(e){status('❌ '+e.message,'var(--red)');}
+}
+
+// ================================================================
+// ANTHROPIC API
+// ================================================================
+async function callClaude(messages,maxTokens=2000,system=''){
+  const key=localStorage.getItem('fl_apikey');
+  if(!key)throw new Error('No API key. Go to Settings.');
+  const model=localStorage.getItem('fl_model')||'claude-sonnet-4-6';
+  const body={model,max_tokens:maxTokens,messages};
+  if(system)body.system=system;
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify(body)
+  });
+  if(!res.ok){const e=await res.json();throw new Error(e.error?.message||'API error');}
+  const data=await res.json();
+  return data.content[0].text;
+}
+
+// ================================================================
+// SUBJECT STANDARDS LIBRARIES
+// ================================================================
+const STANDARDS_LIBRARY={
+  hvac:[
+    {id:'HVAC-01',name:'Basic Safety',prompt:'Demonstrate safe practices in the HVAC work environment including PPE selection and hazard identification.',keywords:['PPE','lockout/tagout','OSHA','safety','hazard']},
+    {id:'HVAC-02',name:'Hand Tools & Power Tools',prompt:'Identify and safely use common hand tools and power tools used in HVAC installation and service.',keywords:['torque','wrench','drill','tool safety']},
+    {id:'HVAC-03',name:'Introduction to the HVAC Industry',prompt:'Describe the history, career paths, and professional expectations in the HVAC/R industry.',keywords:['HVACR','career','industry','EPA 608']},
+    {id:'HVAC-04',name:'Copper and Plastic Piping',prompt:'Cut, join, and pressure-test copper and plastic piping to NCCER specifications.',keywords:['sweat','soldering','PVC','pressure test','flaring']},
+    {id:'HVAC-05',name:'Basic Electricity for HVAC',prompt:'Read a simple electrical schematic and identify voltage, amperage, resistance, and basic circuit types.',keywords:['Ohms law','voltage','amperage','wiring','circuit']},
+    {id:'HVAC-06',name:'Refrigeration System Components',prompt:'Identify and explain the function of each major component in a basic vapor-compression refrigeration cycle.',keywords:['compressor','condenser','metering device','evaporator','refrigerant']},
+    {id:'HVAC-07',name:'Compressors',prompt:'Describe the types of compressors and explain the role of the compressor in system operation.',keywords:['reciprocating','scroll','rotary','compression ratio']},
+    {id:'HVAC-08',name:'Condensers',prompt:'Describe the types and function of condensers and how ambient conditions affect performance.',keywords:['air-cooled','water-cooled','subcooling','heat rejection']},
+    {id:'HVAC-09',name:'Metering Devices',prompt:'Identify and explain the operation of thermostatic expansion valves (TXV) and fixed-orifice devices.',keywords:['TXV','piston','superheat','flow control']},
+    {id:'HVAC-10',name:'Evaporators and Refrigerants',prompt:'Describe evaporator operation and correctly identify refrigerant types, handling requirements, and EPA regulations.',keywords:['EPA 608','evaporation','superheat','A2L','refrigerant recovery']},
+    {id:'HVAC-11',name:'Leak Detection',prompt:'Perform a leak test on a refrigerant circuit using appropriate methods and document findings.',keywords:['electronic leak detector','nitrogen','bubble solution','pressure decay']},
+    {id:'HVAC-12',name:'Charging and Recovery',prompt:'Safely recover, recycle, and recharge a refrigerant system to manufacturer specifications.',keywords:['recovery machine','manifold gauge','charging chart','subcooling','superheat']},
+    {id:'HVAC-13',name:'Gas Heating',prompt:'Describe natural gas combustion, identify components of a gas furnace, and explain the sequence of operation.',keywords:['burner','heat exchanger','draft','BTU','sequence of operation']},
+    {id:'HVAC-14',name:'Electric Heating',prompt:'Identify electric heating elements, controls, and safety devices in electric furnaces and heat pumps.',keywords:['sequencer','strip heat','kW','heat pump','supplemental heat']},
+    {id:'HVAC-15',name:'Duct Systems',prompt:'Calculate airflow requirements and identify common duct materials, designs, and installation standards.',keywords:['ACCA Manual D','static pressure','CFM','flex duct','trunk']},
+    {id:'HVAC-16',name:'Air Distribution and Balance',prompt:'Perform a basic air balance procedure and adjust supply and return registers to meet design specifications.',keywords:['air balance','traverse','pitot tube','CFM','register']},
+    {id:'HVAC-17',name:'Preventive Maintenance',prompt:'Create and execute a preventive maintenance checklist for a split-system residential HVAC unit.',keywords:['PM','coil cleaning','filter','belt','lubrication','log']}
+  ],
+  english:[
+    {id:'ENG-RL9',name:'Cite Textual Evidence (RL.9-10.1)',prompt:'Cite strong and thorough textual evidence to support analysis of what the text says explicitly as well as inferences drawn from the text.'},
+    {id:'ENG-RL2',name:'Theme & Central Idea (RL.9-10.2)',prompt:'Determine a theme or central idea of a text and analyze in detail its development over the course of the text.'},
+    {id:'ENG-RI6',name:'Author\'s Point of View (RI.9-10.6)',prompt:'Determine an author\'s point of view or purpose in a text and analyze how an author uses rhetoric to advance that point of view or purpose.'},
+    {id:'ENG-W2',name:'Informational Writing (W.9-10.2)',prompt:'Write informative/explanatory texts to examine and convey complex ideas, concepts, and information clearly.'},
+    {id:'ENG-W1',name:'Argumentative Writing (W.9-10.1)',prompt:'Write arguments to support claims in an analysis of substantive topics or texts, using valid reasoning and relevant evidence.'},
+    {id:'ENG-SL1',name:'Collaborative Discussion (SL.9-10.1)',prompt:'Initiate and participate effectively in a range of collaborative discussions with diverse partners.'},
+    {id:'ENG-L4',name:'Vocabulary (L.9-10.4)',prompt:'Determine or clarify the meaning of unknown and multiple-meaning words and phrases.'}
+  ],
+  construction:[
+    {id:'CON-01',name:'Construction Safety',prompt:'Identify hazards on a construction site and apply OSHA standards for personal protection.'},
+    {id:'CON-02',name:'Blueprint Reading',prompt:'Read and interpret residential construction blueprints including floor plans and elevations.'},
+    {id:'CON-03',name:'Hand & Power Tools',prompt:'Select and safely operate hand and power tools appropriate to the construction task.'},
+    {id:'CON-04',name:'Concrete & Masonry',prompt:'Mix, place, and finish concrete to specification; identify common masonry materials.'},
+    {id:'CON-05',name:'Wood Framing',prompt:'Cut and assemble wall, floor, and roof framing components per local building codes.'}
+  ]
+};
+
+function loadSubjectStandards(){
+  const subj=$('li-subject').value;
+  const stds=STANDARDS_LIBRARY[subj];
+  if(stds){
+    $('li-standards').value=stds.map(s=>`${s.id}: ${s.name}`).join('\n');
+    lss('fl_active_standards',stds);
+    status('Standards library loaded: '+subj.toUpperCase());
+  }
+}
+function loadStdLibrary(){
+  const subj=$('sm-subject').value;
+  const stds=STANDARDS_LIBRARY[subj];
+  if(stds){lss('fl_active_standards',stds);renderActiveStandards();}
+}
+function saveCustomStandards(){
+  const lines=$('sm-custom').value.split('\n').filter(l=>l.trim());
+  const stds=lines.map((l,i)=>{const parts=l.split(':');return{id:parts[0]?.trim()||'STD-'+(i+1),name:parts[1]?.trim()||l,prompt:'Demonstrate mastery of: '+l};});
+  lss('fl_active_standards',stds);renderActiveStandards();status('Custom standards saved!');
+}
+function renderActiveStandards(){
+  const stds=ls('fl_active_standards',[]);
+  const el=$('sm-active-standards');
+  if(!el)return;
+  el.innerHTML=stds.map(s=>`<div style="padding:6px 0;border-bottom:1px solid var(--border)"><span class="badge badge-navy">${s.id}</span> <strong>${s.name}</strong><br><span style="font-size:.8rem;color:var(--muted)">${s.prompt||''}</span></div>`).join('');
+}
+
+// ================================================================
+// FILE READERS
+// ================================================================
+function readStandardsFile(input){
+  const f=input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{$('li-standards').value=e.target.result;};
+  r.readAsText(f);
+}
+function readLessonFile(input){
+  const f=input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{$('li-lesson').value=e.target.result;};
+  r.readAsText(f);
+}
+
+// ================================================================
+// LESSON TRANSFORMATION
+// ================================================================
+function loadDemoLesson(){
+  $('li-subject').value='hvac';
+  loadSubjectStandards();
+  $('li-lesson').value=`Lesson Title: Introduction to Refrigerant Safety and EPA 608 Regulations
+Grade: 10th Grade CTE HVAC
+Duration: 90 minutes
+Objective: Students will identify refrigerant types, explain EPA Section 608 requirements, and demonstrate proper refrigerant handling.
+Standards: HVAC-10: Evaporators and Refrigerants, HVAC-11: Leak Detection
+
+Materials: EPA 608 study guide, refrigerant sample cylinders (inert/demo), PPE, laptop for EPA practice test
+Introduction (10 min): Teacher explains the history of refrigerants (CFCs, HCFCs, HFCs, HFOs). Discuss environmental impact.
+Direct Instruction (25 min): Teacher lectures on EPA 608 sections (Type I, II, III, Universal), recovery requirements, and record-keeping.
+Activity (30 min): Students complete a worksheet identifying refrigerant types and matching them to proper handling procedures.
+Lab Demo (15 min): Teacher demonstrates leak detection using electronic leak detector and bubble solution.
+Closure (10 min): Quiz - 10 questions from EPA 608 practice test. Homework: Study for Type II certification.
+
+Assessment: Quiz score, worksheet completion
+`;
+}
+
+function parseTagged(raw, tag){
+  const rx=new RegExp('\\['+tag+'\\]([\\s\\S]*?)\\[/'+tag+'\\]','i');
+  const m=raw.match(rx);
+  return m?m[1].trim():'';
+}
+function parseTaggedList(raw, tag){
+  const block=parseTagged(raw,tag);
+  if(!block)return[];
+  return block.split('\n').map(l=>l.replace(/^[-•*]\s*/,'')).filter(l=>l.trim());
+}
+function parseTaggedJSON(raw, tag){
+  try{return JSON.parse(parseTagged(raw,tag));}catch{return null;}
+}
+
+function updateProgress(msg){
+  const el=$('li-progress');
+  if(el)el.innerHTML=`<div class="alert alert-info">${msg}</div>`;
+}
+
+async function transformLesson(){
+  const lesson=$('li-lesson').value.trim();
+  if(!lesson){status('Please paste a lesson plan first.','var(--red)');return;}
+  $('li-progress').style.display='block';
+  const subject=$('li-subject').value||'general';
+  const standards=$('li-standards').value||'';
+  const sys=`You are an expert in Facilitative Leadership education design (R. P. Leiby, Book 6). You transform traditional lesson plans into Facilitative Leadership format. Follow the output format instructions exactly.`;
+
+  try{
+    // ── CALL 1: Core lesson structure ──
+    updateProgress('⏳ Step 1 of 2 — Transforming lesson structure and facilitative steps…');
+    const msg1=`Transform this lesson into Facilitative Leadership format.
+Subject: ${subject}
+Standards: ${standards}
+
+LESSON:
+${lesson}
+
+Use EXACTLY this tagged format. Do not add any text outside the tags:
+
+[TITLE]Lesson title here[/TITLE]
+[GRADE]Grade level[/GRADE]
+[DURATION]Total duration[/DURATION]
+[GOALS]
+- Goal 1
+- Goal 2
+[/GOALS]
+[STANDARDS]
+- Standard 1
+- Standard 2
+[/STANDARDS]
+[OBJECTIVES]
+- Objective 1
+- Objective 2
+[/OBJECTIVES]
+[ROLES]
+Discussion Director | Opening | Leads the opening question and focus statement
+Evidence Manager | Investigation | Organizes and presents student evidence
+Time Keeper | All Phases | Monitors timing and keeps group on track
+Recorder/Reporter | Closing | Documents key learning and reports out
+Materials Manager | Lab/Activity | Distributes and returns all materials
+Standards Connector | Synthesis | Connects activity back to the standard
+[/ROLES]
+[STEPS]
+STEP|1|Opening Hook|10 min|Discussion Director
+WHAT|- Bullet describing what happens
+WHAT|- Bullet describing what happens
+WHY|Reason this phase matters
+MOVE|- Teacher move 1
+MOVE|- Teacher move 2
+CHECK|DOK2|The formative question for this step|Think-Pair-Share
+STEP|2|Investigation|20 min|Evidence Manager
+WHAT|- Bullet describing what happens
+WHY|Reason this phase matters
+MOVE|- Teacher move
+CHECK|DOK3|The formative question|Exit Ticket
+[/STEPS]
+[NARRATIVE]
+Discussion Director | Poses opening question | Phase 1 Opening | Activates prior knowledge
+Evidence Manager | Collects and presents evidence | Phase 3 Investigation | Builds ownership
+[/NARRATIVE]
+[QUOTE]A Facilitative Leadership quote relevant to this lesson[/QUOTE]
+
+Write 5-8 steps. Make every line specific to this lesson's actual content.`;
+
+    const raw1=await callClaude([{role:'user',content:msg1}],4000,sys);
+
+    // ── CALL 2: Rubrics + Prep + DOK ──
+    updateProgress('⏳ Step 2 of 2 — Generating rubrics, prep guide, and DOK ticket…');
+    const titleMatch=raw1.match(/\[TITLE\]([\s\S]*?)\[\/TITLE\]/i);
+    const lessonTitle=titleMatch?titleMatch[1].trim():'this lesson';
+
+    const msg2=`For a Facilitative Leadership lesson titled "${lessonTitle}" in subject "${subject}" covering standards: ${standards||lessonTitle}, generate rubrics, prep guide, and DOK ticket.
+
+Use EXACTLY this tagged format. No text outside the tags:
+
+[PROCESS_RUBRIC]
+CRITERION|Student Facilitation|Student consistently leads with standards-aligned questions|Leads peers and asks relevant questions most of the time|Participates when prompted, rarely initiates|Off-task or disengaged from facilitative role
+CRITERION|Quality of Questioning|Poses higher-order, evidence-based questions independently|Poses relevant questions most of the time|Asks surface-level questions with prompting|Does not ask questions
+CRITERION|Collaborative Engagement|Actively builds on peers' ideas and redirects productively|Engages with peers' ideas consistently|Engages when prompted|Disengaged or disruptive
+CRITERION|Standards-Based Feedback|Provides specific, standard-cited feedback to peers|Provides relevant feedback tied to the lesson|Provides vague or general feedback|Does not provide feedback
+[/PROCESS_RUBRIC]
+[CONTENT_RUBRIC]
+CRITERION|Standards Mastery|Exceeds descriptor specific to this lesson|Meets descriptor|Approaching descriptor|Beginning descriptor
+CRITERION|Depth of Knowledge|Exceeds descriptor|Meets descriptor|Approaching descriptor|Beginning descriptor
+CRITERION|Quality of Evidence|Exceeds descriptor|Meets descriptor|Approaching descriptor|Beginning descriptor
+CRITERION|Real-World Application|Exceeds descriptor|Meets descriptor|Approaching descriptor|Beginning descriptor
+[/CONTENT_RUBRIC]
+[PREP_TODO]
+- To-do item 1
+- To-do item 2
+- To-do item 3
+[/PREP_TODO]
+[PREP_ROOM]
+- Room setup item 1
+- Room setup item 2
+[/PREP_ROOM]
+[PREP_BRIEF]
+- Manager briefing 1
+- Manager briefing 2
+[/PREP_BRIEF]
+[PREP_WATCH]
+- Watch-for moment 1
+- Watch-for moment 2
+[/PREP_WATCH]
+[PREP_MIND]
+- Mindset reminder 1
+- Mindset reminder 2
+[/PREP_MIND]
+[DOK1]Recall-level question specific to this lesson[/DOK1]
+[DOK2]Skill/concept question specific to this lesson[/DOK2]
+[DOK3]Strategic thinking question specific to this lesson[/DOK3]
+[DOK4]Extended thinking question specific to this lesson[/DOK4]
+
+Replace every descriptor and item with content specific to this lesson. No placeholder text.`;
+
+    const raw2=await callClaude([{role:'user',content:msg2}],3500,sys);
+
+    // ── PARSE CALL 1 ──
+    const steps=[];
+    const stepsBlock=parseTagged(raw1,'STEPS');
+    if(stepsBlock){
+      let cur=null;
+      stepsBlock.split('\n').forEach(line=>{
+        line=line.trim();if(!line)return;
+        if(line.startsWith('STEP|')){
+          if(cur)steps.push(cur);
+          const p=line.split('|');
+          cur={number:+p[1]||steps.length+1,title:p[2]||'',duration:p[3]||'',who_leads:p[4]||'',what_happens:[],why:'',teacher_moves:[],checkpoint:{prompt:'',dok_level:1,method:''}};
+        } else if(cur&&line.startsWith('WHAT|')){
+          cur.what_happens.push(line.slice(5).replace(/^-\s*/,''));
+        } else if(cur&&line.startsWith('WHY|')){
+          cur.why=line.slice(4);
+        } else if(cur&&line.startsWith('MOVE|')){
+          cur.teacher_moves.push(line.slice(5).replace(/^-\s*/,''));
+        } else if(cur&&line.startsWith('CHECK|')){
+          const p=line.split('|');
+          const dokNum=+(p[1]||'').replace(/\D/g,'')||2;
+          cur.checkpoint={prompt:p[2]||'',dok_level:dokNum,method:p[3]||''};
+        }
+      });
+      if(cur)steps.push(cur);
+    }
+
+    const roles=[];
+    const rolesBlock=parseTagged(raw1,'ROLES');
+    if(rolesBlock){
+      rolesBlock.split('\n').forEach(line=>{
+        const p=line.split('|');
+        if(p.length>=3)roles.push({name:p[0].trim(),phase:p[1].trim(),description:p[2].trim()});
+      });
+    }
+
+    // ── PARSE CALL 2 ──
+    function parseRubric(block){
+      const criteria=[];
+      if(!block)return{criteria};
+      block.split('\n').forEach(line=>{
+        line=line.trim();
+        if(line.startsWith('CRITERION|')){
+          const p=line.split('|');
+          if(p.length>=5)criteria.push({criterion:p[1],exceeds:p[2],meets:p[3],approaching:p[4],beginning:p[5]||''});
+        }
+      });
+      return{criteria};
+    }
+
+    const narrative=[];
+    const narBlock=parseTagged(raw1,'NARRATIVE');
+    if(narBlock){
+      narBlock.split('\n').forEach(line=>{
+        const p=line.split('|');
+        if(p.length>=4)narrative.push({role:p[0].trim(),what:p[1].trim(),when:p[2].trim(),why:p[3].trim()});
+      });
+    }
+
+    const merged={
+      title:parseTagged(raw1,'TITLE')||'Transformed Lesson',
+      subject,
+      grade:parseTagged(raw1,'GRADE'),
+      duration:parseTagged(raw1,'DURATION'),
+      goals:parseTaggedList(raw1,'GOALS'),
+      standards:parseTaggedList(raw1,'STANDARDS'),
+      objectives:parseTaggedList(raw1,'OBJECTIVES'),
+      roles:roles.length?roles:[{name:'Discussion Director',phase:'Opening',description:''},{name:'Evidence Manager',phase:'Investigation',description:''},{name:'Time Keeper',phase:'All',description:''},{name:'Recorder/Reporter',phase:'Closing',description:''},{name:'Materials Manager',phase:'Lab/Activity',description:''},{name:'Standards Connector',phase:'Synthesis',description:''}],
+      steps,
+      narrative,
+      quote:parseTagged(raw1,'QUOTE'),
+      process_rubric:parseRubric(parseTagged(raw2,'PROCESS_RUBRIC')),
+      content_rubric:parseRubric(parseTagged(raw2,'CONTENT_RUBRIC')),
+      prep_guide:{
+        todo:parseTaggedList(raw2,'PREP_TODO'),
+        room_setup:parseTaggedList(raw2,'PREP_ROOM'),
+        briefings:parseTaggedList(raw2,'PREP_BRIEF'),
+        watchfor:parseTaggedList(raw2,'PREP_WATCH'),
+        mindset:parseTaggedList(raw2,'PREP_MIND')
+      },
+      dok_ticket:{
+        dok1:parseTagged(raw2,'DOK1'),
+        dok2:parseTagged(raw2,'DOK2'),
+        dok3:parseTagged(raw2,'DOK3'),
+        dok4:parseTagged(raw2,'DOK4')
+      }
+    };
+
+    lss('fl_transformed',merged);
+    archiveSaveLesson(merged);
+    $('li-progress').style.display='none';
+    status('✨ Lesson transformed successfully!');
+    show('transformed');
+
+  }catch(e){
+    $('li-progress').style.display='none';
+    status('❌ '+e.message,'var(--red)');
+  }
+}
+
+function clearLessonInput(){
+  $('li-lesson').value='';$('li-standards').value='';
+}
+
+// ================================================================
+// RENDER TRANSFORMED LESSON
+// ================================================================
+function renderTransformed(){
+  const d=ls('fl_transformed');
+  if(!d){
+    $('tl-meta').innerHTML='<span class="badge badge-gold">No lesson transformed yet — go to Lesson Input</span>';
+    ['tl-goals','tl-roles','tl-roles-detail','tl-steps','rubric-process','rubric-content'].forEach(id=>{$(id).innerHTML='';});
+    return;
+  }
+  $('tl-meta').innerHTML=`<strong>${d.title||''}</strong> &nbsp;|&nbsp; ${d.subject||''} &nbsp;|&nbsp; ${d.grade||''} &nbsp;|&nbsp; ${d.duration||''}`;
+  // Goals
+  $('tl-goals').innerHTML=`<strong>Learning Goals:</strong><ul style="padding-left:18px;margin-top:6px">${(d.goals||[]).map(g=>`<li>${g}</li>`).join('')}</ul><strong style="margin-top:8px;display:block">Standards:</strong><ul style="padding-left:18px">${(d.standards||[]).map(s=>`<li><span class="badge badge-navy">${s}</span></li>`).join('')}</ul><strong style="margin-top:8px;display:block">Objectives:</strong><ul style="padding-left:18px">${(d.objectives||[]).map(o=>`<li>${o}</li>`).join('')}</ul>`;
+  // Roles
+  const colors=['badge-navy','badge-teal','badge-purple','badge-gold','badge-green','badge-red'];
+  const roleColors=['#0d2b5e','#0d7a7a','#6f42c1','#c07a00','#27ae60','#c0392b'];
+  const roleBg=['#e8eeff','#e8f8f8','#f3eeff','#fff8e0','#e8f8e8','#ffe8e8'];
+  const assignments=ls('fl_role_assignments',{});
+  const roster=ls('fl_roster',[]);
+  const rosterOpts='<option value="">-- Assign Student --</option>'+roster.map(s=>`<option value="${s.first} ${s.last}">${s.first} ${s.last}</option>`).join('');
+
+  // Clickable chips row
+  $('tl-roles').innerHTML=(d.roles||[]).map((r,i)=>`
+    <span class="role-chip" id="chip-${i}"
+      style="background:${roleColors[i]||'var(--navy)'};color:${i===3?'var(--navy)':'#fff'};${i===3?'background:#f0a500;':''}}"
+      onclick="toggleRolePanel(${i})">
+      ${r.name} &#9660;
+    </span>`).join('');
+
+  // Role detail panels + assignment fields
+  $('tl-roles-detail').innerHTML=`
+    <div style="margin-top:6px">
+      ${(d.roles||[]).map((r,i)=>`
+        <div id="role-panel-${i}" class="role-panel" style="border-left-color:${roleColors[i]||'var(--teal)'};background:${roleBg[i]||'#f4faff'}">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <strong style="color:${roleColors[i]};font-size:1rem">${r.name}</strong>
+            <span class="badge" style="background:${roleColors[i]};color:${i===3?'var(--navy)':'#fff'}">${r.phase||''}</span>
+          </div>
+          <p style="margin-bottom:12px;color:var(--text);font-size:.92rem">${r.description||''}</p>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <label style="margin:0;white-space:nowrap;font-size:.85rem">&#127891; Assigned Student:</label>
+            <select onchange="saveRoleAssignment(${i},this.value)"
+              style="flex:1;min-width:160px;padding:6px 10px;border:1.5px solid ${roleColors[i]};border-radius:7px;font-size:.88rem">
+              ${rosterOpts}
+            </select>
+            <input type="text" placeholder="Or type a name…"
+              id="role-name-${i}"
+              value="${assignments[i]||''}"
+              onchange="saveRoleAssignment(${i},this.value)"
+              style="flex:1;min-width:140px;padding:6px 10px;border:1.5px solid ${roleColors[i]};border-radius:7px;font-size:.88rem">
+            ${assignments[i]?`<span class="badge" style="background:${roleColors[i]};color:${i===3?'var(--navy)':'#fff'}">${assignments[i]}</span>`:''}
+          </div>
+        </div>`).join('')}
+    </div>
+    <div style="margin-top:14px">
+      <h3 style="margin-bottom:10px">Role Assignment Summary</h3>
+      <div id="role-summary-rows">
+        ${(d.roles||[]).map((r,i)=>`
+          <div class="role-assign-row" id="summary-row-${i}">
+            <span class="badge" style="background:${roleColors[i]};color:${i===3?'var(--navy)':'#fff'};min-width:36px;text-align:center">${i+1}</span>
+            <span style="flex:0 0 140px;font-weight:600;font-size:.88rem">${r.name}</span>
+            <span class="badge badge-teal" style="flex:0 0 110px;text-align:center;font-size:.75rem">${r.phase||''}</span>
+            <span id="summary-name-${i}" style="flex:1;color:${assignments[i]?'var(--navy)':'var(--muted)'};font-style:${assignments[i]?'normal':'italic'};font-size:.88rem">${assignments[i]||'Not yet assigned'}</span>
+          </div>`).join('')}
+      </div>
+      <button class="btn btn-outline btn-sm" style="margin-top:10px" onclick="clearRoleAssignments()">Clear All Assignments</button>
+    </div>`;
+
+  // Restore dropdown selections
+  (d.roles||[]).forEach((_,i)=>{
+    const sel=$('role-panel-'+i)?.querySelector('select');
+    if(sel&&assignments[i])sel.value=assignments[i];
+  });
+  // Steps
+  const dokColors={1:'#1a5fa8',2:'#1a7a1a',3:'#b87800',4:'#6f42c1'};
+  const dokColors2={1:'#1a5fa8',2:'#1a7a1a',3:'#b87800',4:'#6f42c1'};
+  const dokBg2={1:'#e3f0ff',2:'#e8f8e8',3:'#fff5e0',4:'#f3e8ff'};
+  const dokLabels2={1:'Recall',2:'Skill/Concept',3:'Strategic Thinking',4:'Extended Thinking'};
+
+  function getRoleColorForStep(roleName){
+    if(!d.roles)return'var(--teal)';
+    const idx=d.roles.findIndex(r=>r.name===roleName);
+    return idx>=0?roleColors[idx]:'var(--teal)';
+  }
+
+  $('tl-steps').innerHTML=(d.steps||[]).map((s,si)=>{
+    const rColor=getRoleColorForStep(s.who_leads);
+    const assign=ls('fl_role_assignments',{});
+    const roleIdx=d.roles?d.roles.findIndex(r=>r.name===s.who_leads):-1;
+    const assignedName=roleIdx>=0&&assign[roleIdx]?assign[roleIdx]:'';
+    return `
+    <div class="step-card" id="step-card-${si}" style="border-left-color:${rColor}">
+      <div class="step-card-header" style="background:${rColor}08;border-bottom:1px solid ${rColor}22">
+        <div class="step-num" style="background:${rColor}">${s.number}</div>
+        <div style="flex:1">
+          <div style="font-size:1.02rem;font-weight:800;color:var(--navy)">${s.title}</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:2px">&#128337; ${s.duration||''}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+          <span class="role-leader-tag" style="background:${rColor};cursor:pointer" onclick="scrollToRolePanel('${s.who_leads}')">
+            &#127775; ${s.who_leads||''}
+          </span>
+          ${assignedName?`<span style="font-size:.75rem;color:${rColor};font-weight:600">&#128100; ${assignedName}</span>`:''}
+        </div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-section">
+          <div class="step-section-label" style="color:${rColor}">
+            <span style="width:8px;height:8px;border-radius:50%;background:${rColor};display:inline-block"></span>
+            What Happens
+          </div>
+          <ul>${(s.what_happens||[]).map(w=>`<li>${w}</li>`).join('')}</ul>
+        </div>
+        <div class="step-section">
+          <div class="step-section-label" style="color:var(--purple)">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--purple);display:inline-block"></span>
+            Why This Phase Matters
+          </div>
+          <div style="font-size:.9rem;color:var(--text);line-height:1.5;font-style:italic;padding-left:4px">${s.why||''}</div>
+        </div>
+        <div class="step-section">
+          <div class="step-section-label" style="color:var(--green)">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block"></span>
+            Teacher Moves
+          </div>
+          <ul style="list-style:none;padding-left:0">${(s.teacher_moves||[]).map(m=>`<li style="padding:3px 0 3px 14px;border-left:3px solid var(--green);margin-bottom:5px;font-size:.9rem">&#8203;${m}</li>`).join('')}</ul>
+        </div>
+        ${s.checkpoint&&s.checkpoint.prompt?`
+        <div class="step-section">
+          <div class="step-section-label" style="color:${dokColors2[s.checkpoint.dok_level]||'#888'}">
+            <span style="width:8px;height:8px;border-radius:50%;background:${dokColors2[s.checkpoint.dok_level]||'#888'};display:inline-block"></span>
+            Formative Checkpoint
+          </div>
+          <div style="background:${dokBg2[s.checkpoint.dok_level]||'#f5f5f5'};border-left:4px solid ${dokColors2[s.checkpoint.dok_level]||'#888'};border-radius:0 7px 7px 0;padding:10px 14px">
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap">
+              <span style="background:${dokColors2[s.checkpoint.dok_level]};color:#fff;border-radius:12px;padding:2px 10px;font-size:.72rem;font-weight:800">DOK ${s.checkpoint.dok_level} — ${dokLabels2[s.checkpoint.dok_level]||''}</span>
+              <span style="background:var(--navy);color:#fff;border-radius:12px;padding:2px 10px;font-size:.72rem;font-weight:700">${s.checkpoint.method||''}</span>
+            </div>
+            <div style="font-size:.92rem;color:var(--text);font-weight:500">&ldquo;${s.checkpoint.prompt||''}&rdquo;</div>
+          </div>
+        </div>`:''}
+      </div>
+    </div>`}).join('');
+  // Rubrics
+  renderRubricTable('rubric-process',d.process_rubric,'Facilitative Process Rubric');
+  renderRubricTable('rubric-content',d.content_rubric,'Content Mastery Rubric');
+  // Quote
+  if(d.quote)$('tl-quote').textContent='"'+d.quote+'" — R. P. Leiby, Book 6';
+}
+
+function renderRubricTable(elId,rubric,title){
+  if(!rubric||!rubric.criteria){$(elId).innerHTML='<p style="color:var(--muted)">No rubric data.</p>';return;}
+  $(elId).innerHTML=`<div style="overflow-x:auto"><table class="rubric-table">
+    <thead><tr><th>Criterion</th><th>Exceeds (4)</th><th>Meets (3)</th><th>Approaching (2)</th><th>Beginning (1)</th></tr></thead>
+    <tbody>${rubric.criteria.map(c=>`<tr><td><strong>${c.criterion}</strong></td><td>${c.exceeds}</td><td>${c.meets}</td><td>${c.approaching}</td><td>${c.beginning}</td></tr>`).join('')}</tbody>
+  </table></div>`;
+}
+
+function switchRubricTab(tab,btn){
+  $('rubric-process').style.display=tab==='process'?'block':'none';
+  $('rubric-content').style.display=tab==='content'?'block':'none';
+  document.querySelectorAll('#view-transformed .tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ================================================================
+// PREP GUIDE
+// ================================================================
+function renderPrepGuide(){
+  const d=ls('fl_transformed');
+  if(!d||!d.prep_guide){['pg-todo','pg-room','pg-briefings','pg-watchfor','pg-mindset'].forEach(id=>$(id)&&($(id).innerHTML='<p style="color:var(--muted)">Transform a lesson first.</p>'));return;}
+  const p=d.prep_guide;
+  const ul=arr=>`<ul style="padding-left:18px">${(arr||[]).map(i=>`<li style="margin-bottom:4px">${i}</li>`).join('')}</ul>`;
+  if($('pg-todo'))$('pg-todo').innerHTML=ul(p.todo);
+  if($('pg-room'))$('pg-room').innerHTML=ul(p.room_setup);
+  if($('pg-briefings'))$('pg-briefings').innerHTML=ul(p.briefings);
+  if($('pg-watchfor'))$('pg-watchfor').innerHTML=ul(p.watchfor);
+  if($('pg-mindset'))$('pg-mindset').innerHTML=ul(p.mindset);
+}
+
+// ================================================================
+// NARRATIVE
+// ================================================================
+function renderNarrative(){
+  const d=ls('fl_transformed');
+  const tbody=$('narrative-body');
+  const timeline=$('narrative-timeline');
+  if(!d){if(tbody)tbody.innerHTML='<tr><td colspan="4" style="color:var(--muted)">Transform a lesson first.</td></tr>';return;}
+  if(tbody)tbody.innerHTML=(d.narrative||[]).map(n=>`<tr><td><span class="badge badge-navy">${n.role}</span></td><td>${n.what}</td><td>${n.when}</td><td>${n.why}</td></tr>`).join('');
+  if(timeline)timeline.innerHTML=(d.steps||[]).map(s=>`<div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:8px"><div style="background:var(--teal);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">${s.number}</div><div><strong>${s.title}</strong> <span style="color:var(--muted);font-size:.82rem">(${s.duration}) — ${s.who_leads}</span></div></div>`).join('');
+}
+
+// ================================================================
+// DOK TICKET
+// ================================================================
+function populateDOKPrompts(){
+  const d=ls('fl_transformed');
+  const saved=ls('fl_dok_current');
+  const el=$('dok-prompts');
+  if(!el)return;
+  const ticket=(d&&d.dok_ticket)||{dok1:'Recall a key fact or term from today\'s lesson.',dok2:'Explain the relationship between two concepts from this lesson.',dok3:'Analyze a scenario using the skills or content from this lesson.',dok4:'Design or evaluate a solution that applies lesson content to a new real-world context.'};
+  const labels=['Recall & Reproduction','Skill / Concept','Strategic Thinking','Extended Thinking'];
+  const colors=['#1a5fa8','#1a7a1a','#b87800','#6f42c1'];
+  const bgColors=['#e3f0ff','#e8f8e8','#fff5e0','#f3e8ff'];
+  const scoreLabels={1:'Beginning',2:'Approaching',3:'Meets',4:'Exceeds'};
+  const savedScores=(saved&&saved.scores)||{};
+
+  el.innerHTML=[1,2,3,4].map(n=>`
+    <div class="dok-item dok${n}" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <strong style="font-size:1rem">DOK ${n} — ${labels[n-1]}</strong>
+        <span class="badge" style="background:${colors[n-1]};color:#fff">Level ${n}</span>
+      </div>
+      <p style="margin-bottom:10px;font-size:.92rem">${ticket['dok'+n]||''}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        ${[1,2,3,4].map(score=>`
+          <button id="dok-score-${n}-${score}"
+            onclick="selectDOKScore(${n},${score})"
+            style="flex:1;min-width:70px;padding:10px 6px;border-radius:8px;border:2px solid ${colors[n-1]};background:${savedScores[n]==score?colors[n-1]:'#fff'};color:${savedScores[n]==score?'#fff':colors[n-1]};font-weight:700;cursor:pointer;font-size:.85rem;transition:all .15s">
+            ${score}<br><span style="font-size:.7rem;font-weight:400">${scoreLabels[score]}</span>
+          </button>`).join('')}
+      </div>
+      <div id="dok-score-label-${n}" style="font-size:.8rem;color:${colors[n-1]};font-weight:600;min-height:16px">
+        ${savedScores[n]?'Selected: '+score+' — '+scoreLabels[savedScores[n]]:''}
+      </div>
+    </div>`).join('');
+
+  if($('dok-date')&&!$('dok-date').value)$('dok-date').value=new Date().toLocaleDateString();
+  if($('dok-student')){
+    const roster=ls('fl_roster',[]);
+    $('dok-student').innerHTML='<option value="">-- Select --</option>'+roster.map(s=>`<option>${s.first} ${s.last}</option>`).join('');
+    if(saved&&saved.student)$('dok-student').value=saved.student;
+  }
+  if(saved){
+    if($('dok-date'))$('dok-date').value=saved.date||new Date().toLocaleDateString();
+    if($('dok-lesson'))$('dok-lesson').value=saved.lesson||'';
+    if($('dok-evidence'))$('dok-evidence').value=saved.evidence||'';
+    if($('dok-nextsteps'))$('dok-nextsteps').value=saved.nextsteps||'';
+    if($('dok-overall'))$('dok-overall').value=saved.overall||'';
+  }
+}
+
+function selectDOKScore(dokLevel, score){
+  const colors=['#1a5fa8','#1a7a1a','#b87800','#6f42c1'];
+  const scoreLabels={1:'Beginning',2:'Approaching',3:'Meets',4:'Exceeds'};
+  const color=colors[dokLevel-1];
+  // Update button visuals
+  [1,2,3,4].forEach(s=>{
+    const btn=$(`dok-score-${dokLevel}-${s}`);
+    if(btn){
+      btn.style.background=s===score?color:'#fff';
+      btn.style.color=s===score?'#fff':color;
+    }
+  });
+  // Update label
+  const lbl=$(`dok-score-label-${dokLevel}`);
+  if(lbl)lbl.textContent=`Selected: ${score} — ${scoreLabels[score]}`;
+  // Save score into current DOK data
+  const saved=ls('fl_dok_current')||{scores:{}};
+  if(!saved.scores)saved.scores={};
+  saved.scores[dokLevel]=score;
+  // Auto-calculate overall as highest selected
+  const scores=Object.values(saved.scores).map(Number);
+  const highest=Math.max(...scores);
+  if($('dok-overall'))$('dok-overall').value=highest;
+  saved.overall=highest;
+  lss('fl_dok_current',saved);
+}
+
+function saveDOK(){
+  const saved=ls('fl_dok_current')||{};
+  saved.student=$('dok-student').value;
+  saved.date=$('dok-date').value;
+  saved.lesson=$('dok-lesson').value;
+  saved.evidence=$('dok-evidence').value;
+  saved.nextsteps=$('dok-nextsteps').value;
+  saved.overall=$('dok-overall').value;
+  lss('fl_dok_current',saved);
+  status('DOK ticket saved!');
+}
+function loadDOK(){
+  // populateDOKPrompts handles loading saved state
+}
+function clearDOK(){
+  if(!confirm2('Clear all DOK ticket scores and fields?'))return;
+  lss('fl_dok_current',null);
+  populateDOKPrompts();
+  ['dok-evidence','dok-nextsteps'].forEach(id=>{if($(id))$(id).value='';});
+  if($('dok-overall'))$('dok-overall').value='';
+}
+function clearDOK(){if(!confirm2('Clear all DOK ticket fields?'))return;lss('fl_dok_current',null);populateDOKPrompts();}
+function downloadDOK(){
+  const html=`<!DOCTYPE html><html><head><title>DOK Ticket</title><style>body{font-family:sans-serif;padding:20px;max-width:800px;margin:auto}.dok1{background:#e3f0ff;border-left:4px solid #1a5fa8;padding:12px;margin:10px 0;border-radius:4px}.dok2{background:#e8f8e8;border-left:4px solid #1a7a1a;padding:12px;margin:10px 0;border-radius:4px}.dok3{background:#fff5e0;border-left:4px solid #b87800;padding:12px;margin:10px 0;border-radius:4px}.dok4{background:#f3e8ff;border-left:4px solid #6f42c1;padding:12px;margin:10px 0;border-radius:4px}textarea{width:100%;min-height:60px;margin-top:6px}</style></head><body><h2>DOK Assessment Ticket</h2><p><strong>Student:</strong> ${$('dok-student')?.value||''} | <strong>Date:</strong> ${$('dok-date')?.value||''}</p><p><strong>Lesson:</strong> ${$('dok-lesson')?.value||''}</p>${$('dok-prompts')?.innerHTML||''}</body></html>`;
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='DOK_Ticket.html';a.click();
+}
+async function commitDOKToLedger(){
+  const student=$('dok-student')?.value;
+  if(!student){status('Select a student first','var(--red)');return;}
+  const lesson=$('dok-lesson')?.value||'DOK Assessment';
+  const overall=$('dok-overall')?.value||'';
+  const score={1:60,2:70,3:82,4:95}[overall]||70;
+  await addLedgerEntry({student,standard:'DOK: '+lesson,score,letter:letterGrade(score),comment:'DOK Level '+overall+' demonstrated',type:'DOK Ticket'});
+  status('DOK ticket committed to ledger!');
+}
+
+// ================================================================
+// STUDENT ROSTER
+// ================================================================
+function addStudent(){
+  const first=$('ros-first').value.trim(),last=$('ros-last').value.trim(),id=$('ros-id').value.trim();
+  if(!first||!last){status('First and last name required','var(--red)');return;}
+  const roster=ls('fl_roster',[]);
+  if(roster.find(s=>s.id===id&&id)){status('Student ID already exists','var(--red)');return;}
+  roster.push({first,last,id:id||Date.now().toString(),email:$('ros-email').value.trim(),section:$('ros-section').value.trim()});
+  lss('fl_roster',roster);
+  ['ros-first','ros-last','ros-id','ros-email','ros-section'].forEach(f=>$(f).value='');
+  renderRoster();status('Student added!');
+}
+function removeStudent(id){
+  if(!confirm2('Remove this student?'))return;
+  const roster=ls('fl_roster',[]).filter(s=>s.id!==id);
+  lss('fl_roster',roster);renderRoster();
+}
+function renderRoster(){
+  const roster=ls('fl_roster',[]);
+  const tbody=$('roster-tbody');
+  const count=$('roster-count');
+  if(!tbody)return;
+  count.textContent=roster.length;
+  tbody.innerHTML=roster.map(s=>`<tr><td>${s.id}</td><td>${s.first} ${s.last}</td><td>${s.email||''}</td><td>${s.section||''}</td><td><button class="btn btn-red btn-sm" onclick="removeStudent('${s.id}')">Remove</button></td></tr>`).join('');
+}
+function exportRosterCSV(){
+  const roster=ls('fl_roster',[]);
+  const csv='Student ID,First Name,Last Name,Email,Section\n'+roster.map(s=>`${s.id},${s.first},${s.last},${s.email||''},${s.section||''}`).join('\n');
+  downloadBlob(csv,'roster.csv','text/csv');
+}
+function importRosterCSV(){status('Upload a CSV file with columns: Student ID, First Name, Last Name, Email, Section','var(--teal)');}
+
+// ================================================================
+// STUDENT PORTAL
+// ================================================================
+function populateStudentDropdowns(){
+  const roster=ls('fl_roster',[]);
+  const stds=ls('fl_active_standards',STANDARDS_LIBRARY.hvac||[]);
+  const spStu=$('sp-student');
+  const spStd=$('sp-standard');
+  const mfStu=$('mf-student');
+  if(spStu)spStu.innerHTML='<option value="">-- Select Your Name --</option>'+roster.map(s=>`<option value="${s.id}">${s.first} ${s.last}</option>`).join('');
+  if(spStd)spStd.innerHTML='<option value="">-- Select Standard --</option>'+stds.map(s=>`<option value="${s.id}">${s.id}: ${s.name}</option>`).join('');
+  if(mfStu)mfStu.innerHTML='<option value="">-- Select Your Name --</option>'+roster.map(s=>`<option value="${s.id}">${s.first} ${s.last}</option>`).join('');
+}
+function populateMFDropdown(){populateStudentDropdowns();}
+function loadSubmissionPrompt(){
+  const stdId=$('sp-standard').value;
+  const stds=ls('fl_active_standards',STANDARDS_LIBRARY.hvac||[]);
+  const std=stds.find(s=>s.id===stdId);
+  const card=$('sp-prompt-card');
+  if(!std||!card){if(card)card.style.display='none';return;}
+  card.style.display='block';
+  $('sp-prompt-title').textContent=std.id+': '+std.name;
+  $('sp-prompt-text').innerHTML=`<p>${std.prompt}</p>`;
+}
+function submitEvidence(){
+  const student=$('sp-student').value;
+  const stdId=$('sp-standard').value;
+  const evidence=$('sp-evidence').value.trim();
+  if(!student||!stdId||!evidence){status('Select your name, standard, and enter evidence.','var(--red)');return;}
+  const roster=ls('fl_roster',[]);
+  const stu=roster.find(s=>s.id===student);
+  const submissions=ls('fl_submissions',[]);
+  submissions.push({id:Date.now(),student_id:student,student_name:stu?`${stu.first} ${stu.last}`:student,standard_id:stdId,evidence,timestamp:new Date().toISOString(),status:'pending'});
+  lss('fl_submissions',submissions);
+  $('sp-evidence').value='';
+  status('✅ Evidence submitted! Your teacher will review it.');
+}
+
+// ================================================================
+// MY FEEDBACK
+// ================================================================
+function loadMyFeedback(){
+  const studentId=$('mf-student').value;
+  const el=$('mf-records');
+  if(!el)return;
+  if(!studentId){el.innerHTML='';return;}
+  const ledger=ls('fl_ledger',[]);
+  const entries=ledger.filter(e=>e.student_id===studentId||e.student===ls('fl_roster',[]).find(s=>s.id===studentId)?.first+' '+ls('fl_roster',[]).find(s=>s.id===studentId)?.last);
+  if(!entries.length){el.innerHTML='<div class="alert alert-warn">No graded work found yet.</div>';return;}
+  el.innerHTML=entries.map(e=>`
+    <div class="card" style="border-left:4px solid ${e.letter==='A'?'var(--green)':e.letter==='B'?'var(--teal)':e.letter==='C'?'var(--gold)':'var(--red)'}">
+      <div style="display:flex;justify-content:space-between"><strong>${e.standard}</strong><span class="badge ${e.letter==='A'?'badge-green':e.letter==='B'?'badge-teal':e.letter==='C'?'badge-gold':'badge-red'}">${e.letter} (${e.score})</span></div>
+      <div style="font-size:.83rem;color:var(--muted)">${new Date(e.timestamp).toLocaleDateString()}</div>
+      ${e.comment?`<div style="margin-top:8px;color:var(--text)"><strong>Teacher:</strong> ${e.comment}</div>`:''}
+      <div style="margin-top:8px"><label style="font-size:.82rem">My Reflection:</label><textarea rows="2" placeholder="Write your reflection..." style="width:100%;margin-top:4px;padding:6px;border:1px solid var(--border);border-radius:5px;font-family:inherit" onchange="saveReflection('${e.id}',this.value)">${e.reflection||''}</textarea></div>
+    </div>`).join('');
+}
+function saveReflection(id,val){
+  const ledger=ls('fl_ledger',[]);
+  const entry=ledger.find(e=>e.id==id);
+  if(entry){entry.reflection=val;lss('fl_ledger',ledger);}
+}
+
+// ================================================================
+// TEACHER DASHBOARD
+// ================================================================
+function switchDashTab(tab,btn){
+  ['submissions','rubric-builder','standards-mgr'].forEach(t=>{const el=$('dash-tab-'+t);if(el)el.style.display=t===tab?'block':'none';});
+  document.querySelectorAll('#view-dashboard .tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(tab==='standards-mgr')renderActiveStandards();
+  if(tab==='rubric-builder')loadSavedRubrics();
+}
+function renderDashboard(){
+  const subs=ls('fl_submissions',[]);
+  const pending=subs.filter(s=>s.status==='pending');
+  const el=$('dash-submissions-list');
+  if(!el)return;
+  if(!pending.length){el.innerHTML='<div class="alert alert-success">No pending submissions.</div>';return;}
+  el.innerHTML=pending.map(s=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;border:1px solid var(--border);border-radius:7px;margin-bottom:8px">
+      <div><strong>${s.student_name}</strong> &nbsp;—&nbsp; <span class="badge badge-navy">${s.standard_id}</span> <span style="font-size:.8rem;color:var(--muted)">${new Date(s.timestamp).toLocaleString()}</span></div>
+      <button class="btn btn-teal btn-sm" onclick="openEval(${s.id})">Evaluate</button>
+    </div>`).join('');
+}
+function openEval(subId){
+  const subs=ls('fl_submissions',[]);
+  const sub=subs.find(s=>s.id===subId);
+  if(!sub)return;
+  const panel=$('dash-eval-panel');
+  const content=$('dash-eval-content');
+  panel.style.display='block';
+  content.innerHTML=`<div style="background:var(--light);padding:12px;border-radius:7px;margin-bottom:10px"><div><strong>${sub.student_name}</strong> — <span class="badge badge-navy">${sub.standard_id}</span></div><div style="margin-top:8px;white-space:pre-wrap">${sub.evidence}</div></div>`;
+  $('dash-comment').value='';
+  $('dash-score').value='';
+  $('dash-letter').value='';
+  $('dash-score').oninput=function(){$('dash-letter').value=letterGrade(this.value);};
+  panel.dataset.subId=subId;
+  panel.dataset.studentId=sub.student_id;
+  panel.dataset.studentName=sub.student_name;
+  panel.dataset.standard=sub.standard_id;
+  // Load rubric
+  const rubrics=ls('fl_rubrics',[]);
+  $('dash-rubric-select').innerHTML=rubrics.length?`<select id="dash-rubric-pick"><option value="">-- No rubric --</option>${rubrics.map(r=>`<option value="${r.id}">${r.name}</option>`).join('')}</select>`:'<span style="color:var(--muted);font-size:.85rem">No saved rubrics. Build one in Rubric Builder tab.</span>';
+}
+async function aiGradeSubmission(){
+  const panel=$('dash-eval-panel');
+  const subId=+panel.dataset.subId;
+  const subs=ls('fl_submissions',[]);
+  const sub=subs.find(s=>s.id===subId);
+  if(!sub)return;
+  status('🤖 AI grading…','var(--teal)');
+  try{
+    const resp=await callClaude([{role:'user',content:`Grade this student submission on a 0-100 scale based on standards mastery, depth of knowledge, and quality of evidence.\n\nStandard: ${sub.standard_id}\nEvidence: ${sub.evidence}\n\nReply in JSON: {"score":85,"letter":"B","comment":"Specific feedback in 1-2 sentences"}`}],200);
+    let g;try{g=JSON.parse(resp);}catch{const m=resp.match(/\{[\s\S]*\}/);g=m?JSON.parse(m[0]):{score:75,letter:'C',comment:resp};}
+    $('dash-score').value=g.score;$('dash-letter').value=g.letter||letterGrade(g.score);$('dash-comment').value=g.comment;
+    status('AI grading complete!');
+  }catch(e){status('❌ '+e.message,'var(--red)');}
+}
+async function commitGrade(){
+  const panel=$('dash-eval-panel');
+  const score=$('dash-score').value;
+  if(!score){status('Enter a score first','var(--red)');return;}
+  const entry={student:panel.dataset.studentName,student_id:panel.dataset.studentId,standard:panel.dataset.standard,score:+score,letter:letterGrade(score),comment:$('dash-comment').value};
+  await addLedgerEntry(entry);
+  // mark submission graded
+  const subs=ls('fl_submissions',[]);
+  const sub=subs.find(s=>s.id===+panel.dataset.subId);
+  if(sub){sub.status='graded';lss('fl_submissions',subs);}
+  panel.style.display='none';
+  renderDashboard();
+  status('✅ Grade committed to ledger!');
+}
+
+// ================================================================
+// RUBRIC BUILDER
+// ================================================================
+let rbCriteria=[];
+function addRubricCriterion(){
+  rbCriteria.push({criterion:'',exceeds:'',meets:'',approaching:'',beginning:''});
+  renderRubricBuilder();
+}
+function renderRubricBuilder(){
+  const el=$('rb-criteria-area');
+  if(!el)return;
+  el.innerHTML=rbCriteria.map((c,i)=>`
+    <div style="border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between"><input type="text" value="${c.criterion}" placeholder="Criterion name" onchange="rbCriteria[${i}].criterion=this.value" style="flex:1;margin-right:8px"><button class="btn btn-red btn-sm" onclick="rbCriteria.splice(${i},1);renderRubricBuilder()">✕</button></div>
+      <div class="grid2" style="margin-top:8px">
+        <div><label>Exceeds (4)</label><textarea rows="2" onchange="rbCriteria[${i}].exceeds=this.value">${c.exceeds}</textarea></div>
+        <div><label>Meets (3)</label><textarea rows="2" onchange="rbCriteria[${i}].meets=this.value">${c.meets}</textarea></div>
+        <div><label>Approaching (2)</label><textarea rows="2" onchange="rbCriteria[${i}].approaching=this.value">${c.approaching}</textarea></div>
+        <div><label>Beginning (1)</label><textarea rows="2" onchange="rbCriteria[${i}].beginning=this.value">${c.beginning}</textarea></div>
+      </div>
+    </div>`).join('');
+}
+function saveRubric(){
+  const name=$('rb-name').value.trim();
+  if(!name){status('Enter a rubric name','var(--red)');return;}
+  const rubrics=ls('fl_rubrics',[]);
+  const id=Date.now();
+  rubrics.push({id,name,criteria:rbCriteria.map(c=>({...c}))});
+  lss('fl_rubrics',rubrics);
+  status('Rubric saved!');loadSavedRubrics();
+}
+function loadSavedRubrics(){
+  const el=$('rb-saved-list');if(!el)return;
+  const rubrics=ls('fl_rubrics',[]);
+  if(!rubrics.length){el.innerHTML='<p style="color:var(--muted);font-size:.85rem">No saved rubrics.</p>';return;}
+  el.innerHTML='<h4 style="margin-bottom:8px">Saved Rubrics</h4>'+rubrics.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px"><strong>${r.name}</strong><div style="display:flex;gap:6px"><button class="btn btn-outline btn-sm" onclick="loadRubric(${r.id})">Load</button><button class="btn btn-red btn-sm" onclick="deleteRubric(${r.id})">Del</button></div></div>`).join('');
+}
+function loadRubric(id){
+  const rubrics=ls('fl_rubrics',[]);
+  const r=rubrics.find(x=>x.id===id);
+  if(!r)return;
+  rbCriteria=[...r.criteria.map(c=>({...c}))];
+  $('rb-name').value=r.name;
+  renderRubricBuilder();
+}
+function deleteRubric(id){
+  if(!confirm2('Delete rubric?'))return;
+  const rubrics=ls('fl_rubrics',[]).filter(r=>r.id!==id);
+  lss('fl_rubrics',rubrics);loadSavedRubrics();
+}
+async function extractRubricFromText(){
+  const text=$('rb-paste').value.trim();
+  if(!text){status('Paste rubric text first','var(--red)');return;}
+  status('🤖 Extracting rubric criteria…','var(--teal)');
+  try{
+    const resp=await callClaude([{role:'user',content:`Extract rubric criteria from this text and return JSON array:\n${text}\n\nReturn: [{"criterion":"name","exceeds":"...","meets":"...","approaching":"...","beginning":"..."}]`}],1000);
+    let arr;try{arr=JSON.parse(resp);}catch{const m=resp.match(/\[[\s\S]*\]/);arr=m?JSON.parse(m[0]):[];}
+    rbCriteria=arr;renderRubricBuilder();status('Criteria extracted!');
+  }catch(e){status('❌ '+e.message,'var(--red)');}
+}
+
+// ================================================================
+// LEDGER
+// ================================================================
+async function addLedgerEntry(data){
+  const ledger=ls('fl_ledger',[]);
+  const prev=ledger[ledger.length-1];
+  const id=Date.now();
+  const timestamp=new Date().toISOString();
+  const content=JSON.stringify({id,timestamp,...data,prev_hash:prev?prev.hash:'0'});
+  const hash=await sha256(content);
+  ledger.push({id,timestamp,...data,prev_hash:prev?prev.hash:'0',hash});
+  lss('fl_ledger',ledger);
+  renderLedger();
+}
+function renderLedger(){
+  const ledger=ls('fl_ledger',[]);
+  const tbody=$('ledger-tbody');
+  const empty=$('ledger-empty');
+  if(!tbody)return;
+  if(!ledger.length){tbody.innerHTML='';if(empty)empty.style.display='block';return;}
+  if(empty)empty.style.display='none';
+  tbody.innerHTML=ledger.map((e,i)=>`<tr><td>${i+1}</td><td style="font-size:.78rem">${new Date(e.timestamp).toLocaleString()}</td><td>${e.student}</td><td><span class="badge badge-navy">${e.standard}</span></td><td>${e.score}</td><td><span class="badge ${e.letter==='A'?'badge-green':e.letter==='B'?'badge-teal':e.letter==='C'?'badge-gold':'badge-red'}">${e.letter}</span></td><td><span class="hash-block" style="padding:3px 6px;display:inline-block">${(e.hash||'').substring(0,16)}…</span></td></tr>`).join('');
+}
+async function verifyLedger(){
+  const ledger=ls('fl_ledger',[]);
+  const el=$('ledger-verify-result');
+  if(!el)return;
+  if(!ledger.length){el.innerHTML='<div class="alert alert-warn">Ledger is empty.</div>';return;}
+  let valid=true;
+  for(let i=0;i<ledger.length;i++){
+    const e=ledger[i];
+    const content=JSON.stringify({id:e.id,timestamp:e.timestamp,student:e.student,student_id:e.student_id,standard:e.standard,score:e.score,letter:e.letter,comment:e.comment,type:e.type,prev_hash:e.prev_hash});
+    const hash=await sha256(content);
+    if(hash!==e.hash){valid=false;break;}
+    if(i>0&&e.prev_hash!==ledger[i-1].hash){valid=false;break;}
+  }
+  el.innerHTML=valid?'<div class="alert alert-success">✅ Ledger integrity verified — all '+ledger.length+' entries are intact and unmodified.</div>':'<div class="alert" style="background:#ffe8e8;color:#a00">❌ Ledger integrity FAILED — one or more entries have been modified.</div>';
+}
+function clearLedger(){if(!confirm2('Clear ALL ledger entries? This cannot be undone.'))return;lss('fl_ledger',[]);renderLedger();status('Ledger cleared');}
+
+function exportCanvasCSV(){
+  const ledger=ls('fl_ledger',[]);
+  if(!ledger.length){status('No grades to export','var(--red)');return;}
+  const students={};
+  const standardSet=new Set();
+  ledger.forEach(e=>{
+    const k=e.student;
+    if(!students[k])students[k]={name:e.student,id:e.student_id||''};
+    students[k][e.standard]={score:e.score,letter:e.letter};
+    standardSet.add(e.standard);
+  });
+  const standards=[...standardSet];
+  const header=['Student ID','Student Name','SIS Login ID',...standards.map(s=>`"${s} (100)"`),'Notes'].join(',');
+  const pointsRow=['Points Possible','','', ...standards.map(()=>100),''].join(',');
+  const rows=Object.values(students).map(s=>[s.id,`"${s.name}"`,s.id,...standards.map(std=>s[std]?s[std].score:''),''].join(','));
+  const csv=[header,pointsRow,...rows].join('\n');
+  downloadBlob(csv,'canvas_grades.csv','text/csv');
+  status('Canvas CSV exported!');
+}
+
+// ================================================================
+// ARCHIVES
+// ================================================================
+function archiveSaveLesson(lesson){
+  const history=ls('fl_lesson_archive',[]);
+  history.unshift({id:Date.now(),date:new Date().toISOString(),title:lesson.title||'Untitled Lesson',subject:lesson.subject||'',grade:lesson.grade||'',duration:lesson.duration||'',standards:lesson.standards||[],roles:(lesson.roles||[]).map(r=>r.name),stepCount:(lesson.steps||[]).length});
+  lss('fl_lesson_archive',history);
+}
+function switchArchiveTab(tab,btn){
+  ['lessons','assessments','combined'].forEach(t=>{const el=$('arch-tab-'+t);if(el)el.style.display=t===tab?'block':'none';});
+  document.querySelectorAll('#view-archives .tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(tab==='lessons')renderArchiveLessons();
+  if(tab==='assessments')renderArchiveAssessments();
+  if(tab==='combined')renderArchiveCombined();
+}
+function renderArchiveLessons(){
+  const history=ls('fl_lesson_archive',[]);
+  const el=$('arch-lessons-list');if(!el)return;
+  if(!history.length){el.innerHTML='<div class="alert alert-warn">No lessons archived yet. Transform a lesson in Lesson Input to begin your history.</div>';return;}
+  el.innerHTML=history.map((l,i)=>`
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px;border-left:4px solid var(--teal)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="font-size:.78rem;color:var(--muted)">#${history.length-i} &nbsp;·&nbsp; ${new Date(l.date).toLocaleDateString('en-US',{weekday:'short',year:'numeric',month:'short',day:'numeric'})}</div>
+          <strong style="font-size:1rem;color:var(--navy)">${l.title}</strong>
+          <div style="margin-top:4px"><span class="badge badge-teal">${l.subject}</span> <span class="badge badge-navy">${l.grade}</span> <span style="font-size:.8rem;color:var(--muted)">${l.duration} &nbsp;·&nbsp; ${l.stepCount} phases</span></div>
+        </div>
+      </div>
+      ${l.standards&&l.standards.length?`<div style="margin-top:8px;font-size:.82rem"><strong>Standards:</strong> ${l.standards.map(s=>`<span class="badge badge-navy" style="margin-right:3px">${s}</span>`).join('')}</div>`:''}
+      ${l.roles&&l.roles.length?`<div style="margin-top:6px;font-size:.82rem"><strong>Roles:</strong> ${l.roles.join(' · ')}</div>`:''}
+    </div>`).join('');
+}
+function renderArchiveAssessments(){
+  const ledger=ls('fl_ledger',[]);
+  const el=$('arch-assessments-list');if(!el)return;
+  if(!ledger.length){el.innerHTML='<div class="alert alert-warn">No assessments recorded yet. Commit grades in the Grading Dashboard to build your assessment history.</div>';return;}
+  // group by date
+  const byDate={};
+  ledger.forEach(e=>{
+    const d=new Date(e.timestamp).toLocaleDateString('en-US',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
+    if(!byDate[d])byDate[d]=[];
+    byDate[d].push(e);
+  });
+  el.innerHTML=Object.entries(byDate).reverse().map(([date,entries])=>`
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px;border-left:4px solid var(--purple)">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:8px">📅 ${date} <span style="font-size:.8rem;font-weight:400;color:var(--muted)">(${entries.length} assessment${entries.length>1?'s':''})</span></div>
+      <table style="width:100%;font-size:.84rem"><thead><tr><th>Student</th><th>Standard / Rubric</th><th>Score</th><th>Grade</th></tr></thead>
+      <tbody>${entries.map(e=>`<tr><td>${e.student}</td><td><span class="badge badge-navy">${e.standard}</span></td><td>${e.score}</td><td><span class="badge ${e.letter==='A'?'badge-green':e.letter==='B'?'badge-teal':e.letter==='C'?'badge-gold':'badge-red'}">${e.letter}</span></td></tr>`).join('')}</tbody></table>
+    </div>`).join('');
+}
+function renderArchiveCombined(){
+  const lessons=ls('fl_lesson_archive',[]);
+  const ledger=ls('fl_ledger',[]);
+  const el=$('arch-combined-list');if(!el)return;
+  if(!lessons.length&&!ledger.length){el.innerHTML='<div class="alert alert-warn">No history yet. Transform lessons and grade assessments to build your teaching timeline.</div>';return;}
+  // merge and sort by date desc
+  const items=[
+    ...lessons.map(l=>({date:l.date,type:'lesson',label:'📄 Lesson Transformed',title:l.title,detail:`${l.subject} · ${l.grade} · ${l.stepCount} phases · ${(l.standards||[]).length} standards`})),
+    ...ledger.map(e=>({date:e.timestamp,type:'assessment',label:'✅ Assessment Graded',title:e.student+' — '+e.standard,detail:`Score: ${e.score} (${e.letter}) ${e.comment?'· '+e.comment:''}`}))
+  ].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  el.innerHTML=items.map(item=>`
+    <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px">
+      <div style="flex-shrink:0;width:10px;height:10px;border-radius:50%;margin-top:5px;background:${item.type==='lesson'?'var(--teal)':'var(--purple)'}"></div>
+      <div style="flex:1;border-bottom:1px solid var(--border);padding-bottom:10px">
+        <div style="font-size:.75rem;color:var(--muted)">${new Date(item.date).toLocaleString()}</div>
+        <div><span class="badge ${item.type==='lesson'?'badge-teal':'badge-purple'}" style="margin-right:6px">${item.label}</span><strong>${item.title}</strong></div>
+        <div style="font-size:.82rem;color:var(--muted);margin-top:3px">${item.detail}</div>
+      </div>
+    </div>`).join('');
+}
+function exportArchivesCSV(){
+  const lessons=ls('fl_lesson_archive',[]);
+  const csv='Date,Type,Title,Subject,Grade,Standards,Phases\n'+lessons.map(l=>`${new Date(l.date).toLocaleDateString()},Lesson,"${l.title}",${l.subject},${l.grade},"${(l.standards||[]).join('; ')}",${l.stepCount}`).join('\n');
+  downloadBlob(csv,'lesson_archives.csv','text/csv');
+}
+function clearArchives(){if(!confirm2('Clear all archive history? This does not affect the Ledger.'))return;lss('fl_lesson_archive',[]);renderArchiveLessons();status('Archives cleared');}
+
+// ================================================================
+// DATA MANAGEMENT
+// ================================================================
+function exportAllData(){
+  const data={roster:ls('fl_roster',[]),submissions:ls('fl_submissions',[]),ledger:ls('fl_ledger',[]),rubrics:ls('fl_rubrics',[]),standards:ls('fl_active_standards',[]),transformed:ls('fl_transformed'),settings:{model:localStorage.getItem('fl_model')}};
+  downloadBlob(JSON.stringify(data,null,2),'fl_platform_backup.json','application/json');
+}
+function importAllData(){status('Upload a JSON backup file exported from this platform.','var(--teal)');}
+function resetPlatform(){if(!confirm2('RESET ALL DATA? This deletes roster, ledger, rubrics, and all submissions. Cannot be undone.'))return;['fl_roster','fl_submissions','fl_ledger','fl_rubrics','fl_active_standards','fl_transformed','fl_dok_current'].forEach(k=>localStorage.removeItem(k));status('Platform reset.','var(--red)');show('home');}
+
+// ================================================================
+// HELPERS
+// ================================================================
+function downloadBlob(content,filename,type){
+  const blob=new Blob([content],{type});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.click();
+}
+
+
+// ================================================================
+// ROLE PANEL INTERACTIONS
+// ================================================================
+function toggleRolePanel(idx){
+  const panel=$('role-panel-'+idx);
+  const chip=$('chip-'+idx);
+  const isOpen=panel&&panel.classList.contains('open');
+  document.querySelectorAll('.role-panel').forEach(p=>p.classList.remove('open'));
+  document.querySelectorAll('.role-chip').forEach(c=>c.classList.remove('selected'));
+  if(!isOpen&&panel){
+    panel.classList.add('open');
+    if(chip)chip.classList.add('selected');
+    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+    // Highlight all steps where this role leads
+    highlightStepsForRole(idx);
+  } else {
+    clearStepHighlights();
+  }
+}
+function scrollToRolePanel(roleName){
+  const d=ls('fl_transformed');
+  if(!d||!d.roles)return;
+  const idx=d.roles.findIndex(r=>r.name===roleName);
+  if(idx<0)return;
+  // Open the role panel
+  document.querySelectorAll('.role-panel').forEach(p=>p.classList.remove('open'));
+  document.querySelectorAll('.role-chip').forEach(c=>c.classList.remove('selected'));
+  const panel=$('role-panel-'+idx);
+  const chip=$('chip-'+idx);
+  if(panel){panel.classList.add('open');panel.scrollIntoView({behavior:'smooth',block:'center'});}
+  if(chip)chip.classList.add('selected');
+  highlightStepsForRole(idx);
+}
+function highlightStepsForRole(roleIdx){
+  const d=ls('fl_transformed');
+  if(!d||!d.roles)return;
+  const roleName=d.roles[roleIdx]?.name;
+  clearStepHighlights();
+  (d.steps||[]).forEach((s,si)=>{
+    const card=$('step-card-'+si);
+    if(card){
+      if(s.who_leads===roleName){
+        card.classList.add('highlighted');
+      } else {
+        card.style.opacity='0.45';
+      }
+    }
+  });
+}
+function clearStepHighlights(){
+  document.querySelectorAll('.step-card').forEach(c=>{
+    c.classList.remove('highlighted');
+    c.style.opacity='1';
+  });
+}
+function saveRoleAssignment(idx,name){
+  const assignments=ls('fl_role_assignments',{});
+  assignments[idx]=name.trim();
+  lss('fl_role_assignments',assignments);
+  // Update summary row
+  const el=$('summary-name-'+idx);
+  if(el){el.textContent=name.trim()||'Not yet assigned';el.style.fontStyle=name.trim()?'normal':'italic';el.style.color=name.trim()?'var(--navy)':'var(--muted)';}
+  // Sync the text input if a dropdown was used
+  const txt=$('role-name-'+idx);
+  if(txt&&txt.value!==name)txt.value=name;
+  status('Role assigned: '+name);
+}
+function clearRoleAssignments(){
+  if(!confirm2('Clear all role assignments?'))return;
+  lss('fl_role_assignments',{});
+  renderTransformed();
+}
+
+// ================================================================
+// INIT
+// ================================================================
+window.onload=function(){
+  loadSettings();
+  populateStudentDropdowns();
+  renderLedger();
+  renderRoster();
+  // default active standards if none
+  if(!ls('fl_active_standards')){lss('fl_active_standards',STANDARDS_LIBRARY.hvac);}
+};
+</script>
+</body>
+</html>
